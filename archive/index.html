@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+	<title>title</title>
+	<script src="script.js"></script>
+	<style>
+		#methods_container {
+			float: left;
+			margin-right: 150px;
+		}
+		#details {
+			float: left;
+		}
+	</style>
+	<script>
+		var domIsReady1 = false;
+		var domIsReady2 = false;
+		var domIsNotReady = document.getElementById('mocha');
+
+		dom.ready(function () {
+			domIsReady1 = document.getElementById('mocha');
+		});
+	</script>
+</head>
+<body>
+	<div id="main_container">
+		
+		<h1>dom module tests</h1>
+
+		<div id="mocha"></div>
+
+
+		<div id="methods_container">
+			<ul id="methods">
+				<li>$id</li>
+				<li>$cls</li>
+				<li>$tag</li>
+				<li>$qs</li>
+				<li>$qsa</li>
+				<li>create</li>
+				<li>remove</li>
+				<li>put</li>
+				<li>index</li>
+				<li>next</li>
+				<li>next_</li>
+				<li>prev</li>
+				<li>prev_</li>
+				<li>parent</li>
+				<li>child</li>
+				<li>lastChild</li>
+				<li>children</li>
+				<li>siblings</li>
+				<li>findRelative</li>
+				<li>on</li>
+				<li>ready</li>
+				<li>css</li>
+				<li>show</li>
+				<li>hide</li>
+				<li>getBox</li>
+				<li>attr</li>
+				<li>data</li>
+				<li>text</li>
+				<li>value</li>
+				<li>html</li>
+				<li>hasClass</li>
+				<li>addClass</li>
+				<li>removeClass</li>
+				<li>toggleClass</li>
+			</ul>
+		</div>
+	</div>
+
+<!-- ------------------------ -->
+<script src="chai.js"></script>
+<script src="https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+<script>mocha.setup('bdd')</script>
+<script src="test.js"></script>
+<script>
+//-------------------------------
+    mocha.checkLeaks();
+    mocha.globals(['jQuery']);
+
+	dom.ready(function () {
+		domIsReady2 = document.getElementById('mocha');
+	});
+
+    mocha.run();
+
+
+
+
+
+
+//-------------------------------
+</script>
+</body>
+</html>

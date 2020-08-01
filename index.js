@@ -1,3 +1,3 @@
-const TPL = require('./src/TPL');
-
-module.exports = TPL;
+module.exports = {
+	create: require('./src/create'),
+};
