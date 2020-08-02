@@ -16,6 +16,7 @@ describe('create', () => {
 	});
 
 	after(() => {
+		global.window.close();
 		global.window = null;
 		global.document = null;
 	});
@@ -24,7 +25,7 @@ describe('create', () => {
 
 	it('creates a `div` by default', () => {
 		const elm = create();
-		return expect(elm.nodeName).to.equal('DIV');
+		expect(elm.nodeName).to.equal('DIV');
 	});
 
 	it('creates HTML elements', () => {

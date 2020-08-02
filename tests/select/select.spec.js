@@ -9,12 +9,13 @@ const setWinDoc = (dom) => {
 	global.document = dom.window.document;
 };
 
-describe.only('select / $', () => {
+describe('select / $', () => {
 	before(() => JSDOM.fromFile('./tests/select/select.html').then((dom) => {
 		setWinDoc(dom);
 	}));
 
 	after(() => {
+		global.window.close();
 		global.window = null;
 		global.document = null;
 	});
