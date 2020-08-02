@@ -9,8 +9,8 @@
    "homepage": "https://github.com/taitulism/dom-lib#readme",
    "repository": "github:taitulism/dom-lib",
    "scripts": {
-      "dev": "mocha ./tests --watch",
-      "test": "mocha ./tests --bail",
+      "dev": "mocha ./tests --recursive --watch",
+      "test": "mocha ./tests --recursive --bail",
       "lint": "eslint ./index.js ./lib ./tests",
       "check": "npm run lint && npm test -- -reporter landing",
       "play": "node ./playground/play.js",

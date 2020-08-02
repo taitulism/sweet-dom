@@ -60,7 +60,6 @@ module.exports = {
 		"eol-last": "error",
 		"eqeqeq": ["error", "smart"],
 		"func-call-spacing": "error",
-		"func-name-matching": "error",
 		"func-names": [
 			"error",
 			"as-needed"
@@ -276,6 +275,7 @@ module.exports = {
 //		"prefer-named-capture-group": "off",
 //		"padded-blocks": "off",
 //		"one-var": "off",
+//		"func-name-matching": "off",
 //		"object-curly-spacing": "off",
 //		"no-warning-comments": "off",
 //		"no-underscore-dangle": ["off", { "allowAfterThis": true, "allow": [] }],
