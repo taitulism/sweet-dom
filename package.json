@@ -18,8 +18,9 @@
       "postversion": "git push && git push --tags"
    },
    "devDependencies": {
+      "chai": "*",
       "eslint": "*",
-      "mocha": "*",
-      "chai": "*"
+      "jsdom": "^16.3.0",
+      "mocha": "*"
    }
 }
