@@ -59,4 +59,26 @@ describe('create', () => {
 		expect(elm.classList.contains('first-class')).to.be.true;
 		expect(elm.classList.contains('second-class')).to.be.true;
 	});
+
+	it('creates an element with attributes', () => {
+		const elm = create('input', {
+			type: 'text',
+			name: 'username'
+		});
+
+		expect(elm.nodeName).to.equal('INPUT');
+		expect(elm.getAttribute('type')).to.equal('text');
+		expect(elm.getAttribute('name')).to.equal('username');
+	});
+
+	it('creates an element with inline style', () => {
+		const elm = create('div', null, {
+			width: '50px',
+			height: '50px'
+		});
+
+		expect(elm.nodeName).to.equal('DIV');
+		expect(elm.style.width).to.equal('50px');
+		expect(elm.style.height).to.equal('50px');
+	});
 });
