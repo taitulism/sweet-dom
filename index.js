@@ -1,3 +1,3 @@
 module.exports = {
-	create: require('./src/create'),
+	create: require('./lib/create'),
 };
