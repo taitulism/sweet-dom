@@ -11,6 +11,8 @@ const setWinDoc = (dom) => {
 
 describe('attr', () => {
 	let elm;
+	beforeEach(() => { elm = document.createElement('div'); });
+	afterEach(() => { elm = null });
 
 	before(() => {
 		const dom = new JSDOM('');
@@ -22,9 +24,6 @@ describe('attr', () => {
 		global.window = null;
 		global.document = null;
 	});
-
-	beforeEach(() => { elm = document.createElement('div'); });
-	afterEach(() => { elm = null });
 
 	it('is a function', () => expect(attr).to.be.a('function'));
 
