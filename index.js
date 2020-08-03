@@ -3,6 +3,7 @@ module.exports = {
 	create: require('./lib/create'),
 	on: require('./lib/on'),
 	attr: require('./lib/attr'),
+	data: require('./lib/data'),
 	style: require('./lib/style'),
 	hasClass: require('./lib/has-class'),
 	addClass: require('./lib/add-class'),
