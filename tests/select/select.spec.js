@@ -45,8 +45,9 @@ describe('select / $', () => {
 
 	it('returns an Array when multiple selection', () => {
 		const elms = $$('.box');
-		expect(elms.length).to.equal(3);
-		expect(Array.isArray(elms)).to.be.true;
+		expect(elms).to.have.lengthOf(3);
+		expect(elms).to.be.an('array');
+
 	});
 
 	it('$.id', () => {
