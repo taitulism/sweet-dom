@@ -5,6 +5,8 @@ module.exports = {
 	attr: require('./lib/attr'),
 	data: require('./lib/data'),
 	style: require('./lib/style'),
+	text: require('./lib/text'),
+	html: require('./lib/html'),
 	hasClass: require('./lib/has-class'),
 	addClass: require('./lib/add-class'),
 	removeClass: require('./lib/remove-class'),

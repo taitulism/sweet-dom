@@ -10,11 +10,11 @@ const setWinDoc = (dom) => {
 };
 
 describe('on', () => {
-	before(() => JSDOM.fromFile('./tests/events/events.html').then((dom) => {
+	beforeEach(() => JSDOM.fromFile('./tests/events/events.html').then((dom) => {
 		setWinDoc(dom);
 	}));
 
-	after(() => {
+	afterEach(() => {
 		global.window.close();
 		global.window = null;
 		global.document = null;
