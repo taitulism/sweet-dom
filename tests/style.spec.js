@@ -27,6 +27,14 @@ describe('style', () => {
 
 	it('is a function', () => expect(style).to.be.a('function'));
 
+	it('gets inline style', function () {
+		elm.style.width = '50px';
+
+		const value = style(elm, 'width');
+
+		expect(value).to.equal('50px');
+	});
+
 	it('sets inline style', function () {
 		style(elm, 'width', '50px');
 
@@ -41,13 +49,5 @@ describe('style', () => {
 
 		expect(elm.style.width).to.equal('50px');
 		expect(elm.style.height).to.equal('30px');
-	});
-
-	it('gets inline style', function () {
-		elm.style.width = '50px';
-
-		const value = style(elm, 'width');
-
-		expect(value).to.equal('50px');
 	});
 });

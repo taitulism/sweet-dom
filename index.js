@@ -7,6 +7,7 @@ module.exports = {
 	style: require('./lib/style'),
 	text: require('./lib/text'),
 	html: require('./lib/html'),
+	value: require('./lib/value'),
 	hasClass: require('./lib/has-class'),
 	addClass: require('./lib/add-class'),
 	removeClass: require('./lib/remove-class'),
