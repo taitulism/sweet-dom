@@ -9,6 +9,7 @@ module.exports = {
 	value: require('./lib/value'),
 	html: require('./lib/html'),
 	children: require('./lib/children'),
+	getChild: require('./lib/get-child'),
 	hasClass: require('./lib/has-class'),
 	addClass: require('./lib/add-class'),
 	removeClass: require('./lib/remove-class'),
