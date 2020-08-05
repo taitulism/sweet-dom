@@ -14,6 +14,8 @@ module.exports = {
 	getChild: require('./lib/get-child'),
 	lastChild: require('./lib/last-child'),
 	parent: require('./lib/parent'),
+	prev: require('./lib/prev'),
+	next: require('./lib/next'),
 	hasClass: require('./lib/has-class'),
 	addClass: require('./lib/add-class'),
 	removeClass: require('./lib/remove-class'),

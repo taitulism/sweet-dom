@@ -37,4 +37,9 @@ describe('parent', () => {
 		expect(directParent.id).to.equal('parent');
 		expect(grandParent.id).to.equal('grand-parent');
 	});
+
+	it('returns null when element has no parents', () => {
+		const child = document.getElementById('child');
+		expect(parent(child, 20)).to.be.null;
+	});
 });
