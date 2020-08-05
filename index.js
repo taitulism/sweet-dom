@@ -13,6 +13,7 @@ module.exports = {
 	firstChild: require('./lib/first-child'),
 	getChild: require('./lib/get-child'),
 	lastChild: require('./lib/last-child'),
+	parent: require('./lib/parent'),
 	hasClass: require('./lib/has-class'),
 	addClass: require('./lib/add-class'),
 	removeClass: require('./lib/remove-class'),
