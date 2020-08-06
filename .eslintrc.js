@@ -44,7 +44,7 @@ module.exports = {
 		'arrow-spacing': 'error',
 		'block-scoped-var': 'error',
 		'block-spacing': 'error',
-		'brace-style': ['error', 'stroustrup'],
+		'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
 		camelcase: [
 			'error', {
 				allow: ['^REGEX_']
@@ -96,7 +96,6 @@ module.exports = {
 		],
 		'max-nested-callbacks': 'error',
 		'max-params': ['error', { max: 4 }],
-		'max-statements-per-line': 'error',
 		'new-cap': [
 			'error', {
 				capIsNew: false,
@@ -295,6 +294,7 @@ module.exports = {
 //		"one-var": "off",
 //		"func-name-matching": "off",
 //		"object-curly-spacing": "off",
+//		'max-statements-per-line': 'off',
 //		"no-warning-comments": "off",
 //		"no-underscore-dangle": ["off", { "allowAfterThis": true, "allow": [] }],
 //		"no-ternary": "off",
