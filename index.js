@@ -21,4 +21,6 @@ module.exports = {
 	removeClass: require('./lib/remove-class'),
 	toggleClass: require('./lib/toggle-class'),
 	replaceClass: require('./lib/replace-class'),
+	show: require('./lib/show'),
+	hide: require('./lib/hide'),
 };
