@@ -22,12 +22,12 @@ describe('prev', () => {
 
 	it('is a function', () => expect(prev).to.be.a('function'));
 
-	it('gets an element\'s previous sibling - html elements only', () => {
+	it('gets an element\'s previous sibling', () => {
 		const elm = document.getElementById('child-D');
 		expect(prev(elm).id).to.equal('child-C');
 	});
 
-	it('gets an element\'s previous sibling - with nodes (text, comments etc.)', () => {
+	it('gets an element\'s previous sibling - with text nodes', () => {
 		const elm = document.getElementById('child-D');
 		expect(prev(elm, true).textContent).to.contain('\n\t\t');
 	});
@@ -38,7 +38,7 @@ describe('prev', () => {
 		expect(prev(elm, 2).id).to.equal('child-B');
 	});
 
-	it('gets one of an element\'s previous siblings - with nodes', () => {
+	it('gets one of an element\'s previous siblings - with text nodes', () => {
 		const elm = document.getElementById('child-D');
 		expect(prev(elm, 1, true).textContent).to.contain('\n\t\t');
 		expect(prev(elm, 2, true).textContent).to.contain('a comment');

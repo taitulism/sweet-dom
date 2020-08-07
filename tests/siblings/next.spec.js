@@ -22,23 +22,23 @@ describe('next', () => {
 
 	it('is a function', () => expect(next).to.be.a('function'));
 
-	it('gets an element\'s next sibling - html elements only', () => {
+	it('gets an element\'s next sibling', () => {
 		const elm = document.getElementById('child-A');
 		expect(next(elm).id).to.equal('child-B');
 	});
 
-	it('gets an element\'s next sibling - with nodes (text, comments etc.)', () => {
+	it('gets an element\'s next sibling - with text nodes', () => {
 		const elm = document.getElementById('child-A');
 		expect(next(elm, true).textContent).to.contain('some text');
 	});
 
-	it('gets one of an element\'s next siblings - html elements only', () => {
+	it('gets one of an element\'s next siblings', () => {
 		const elm = document.getElementById('child-A');
 		expect(next(elm, 1).id).to.equal('child-B');
 		expect(next(elm, 2).id).to.equal('child-C');
 	});
 
-	it('gets one of an element\'s next siblings - with nodes (text, comments etc.)', () => {
+	it('gets one of an element\'s next siblings - with text nodes', () => {
 		const elm = document.getElementById('child-A');
 		expect(next(elm, 1, true).textContent).to.contain('some text');
 		expect(next(elm, 2, true).id).to.equal('child-B');

@@ -38,8 +38,6 @@ describe('visibility', () => {
 		});
 	});
 
-
-
 	describe('hide', () => {
 		it('is a function', () => expect(hide).to.be.a('function'));
 
@@ -48,7 +46,6 @@ describe('visibility', () => {
 			hide(elm);
 
 			expect(elm.style.display).to.equal('none');
-
 		});
 	});
 });
