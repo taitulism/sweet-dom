@@ -29,7 +29,7 @@ describe('parent', () => {
 		expect(parentElm.id).to.equal('parent');
 	});
 
-	it('gets an element\'s grand parents', () => {
+	it('gets one of element\'s grand parents', () => {
 		const child = document.getElementById('child');
 		const directParent = parent(child, 1);
 		const grandParent = parent(child, 2);
