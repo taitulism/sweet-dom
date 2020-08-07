@@ -10,9 +10,9 @@ const setWinDoc = (dom) => {
 };
 
 const NEW_CLASSNAME = 'new-classname';
+const ANOTHER_NEW_CLASSNAME = 'another-classname';
 const EXISTING_CLASSNAME_1 = 'existing-classname-1';
 const EXISTING_CLASSNAME_2 = 'existing-classname-2';
-const EXISTING_CLASSNAME_3 = 'existing-classname-3';
 
 describe('classnames', () => {
 	let elm;
@@ -53,25 +53,39 @@ describe('classnames', () => {
 		it('is a function', () => expect(addClass).to.be.a('function'));
 
 		it('adds a classname to an element', () => {
-			const hasBefore = hasClass(elm, NEW_CLASSNAME);
+			expect(hasClass(elm, NEW_CLASSNAME)).to.be.false;
 			addClass(elm, NEW_CLASSNAME);
-			const hasAfter = hasClass(elm, NEW_CLASSNAME);
+			expect(hasClass(elm, NEW_CLASSNAME)).to.be.true;
+		});
 
-			expect(hasBefore).to.be.false;
-			expect(hasAfter).to.be.true;
+		it('adds multiple classnames to an element', () => {
+			expect(hasClass(elm, NEW_CLASSNAME)).to.be.false;
+			expect(hasClass(elm, ANOTHER_NEW_CLASSNAME)).to.be.false;
+
+			addClass(elm, [NEW_CLASSNAME, ANOTHER_NEW_CLASSNAME]);
+
+			expect(hasClass(elm, NEW_CLASSNAME)).to.be.true;
+			expect(hasClass(elm, ANOTHER_NEW_CLASSNAME)).to.be.true;
 		});
 	});
 
 	describe('removeClass', () => {
 		it('is a function', () => expect(removeClass).to.be.a('function'));
 
-		it('removes a classname to an element', () => {
-			const hasBefore = hasClass(elm, EXISTING_CLASSNAME_1);
+		it('removes a classname from an element', () => {
+			expect(hasClass(elm, EXISTING_CLASSNAME_1)).to.be.true;
 			removeClass(elm, EXISTING_CLASSNAME_1);
-			const hasAfter = hasClass(elm, EXISTING_CLASSNAME_1);
+			expect(hasClass(elm, EXISTING_CLASSNAME_1)).to.be.false;
+		});
 
-			expect(hasBefore).to.be.true;
-			expect(hasAfter).to.be.false;
+		it('removes multiple classnames from an element', () => {
+			expect(hasClass(elm, EXISTING_CLASSNAME_1)).to.be.true;
+			expect(hasClass(elm, EXISTING_CLASSNAME_2)).to.be.true;
+
+			removeClass(elm, [EXISTING_CLASSNAME_1, EXISTING_CLASSNAME_2]);
+
+			expect(hasClass(elm, EXISTING_CLASSNAME_1)).to.be.false;
+			expect(hasClass(elm, EXISTING_CLASSNAME_2)).to.be.false;
 		});
 	});
 
