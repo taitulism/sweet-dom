@@ -26,6 +26,6 @@ describe('dom-lib', () => {
 	});
 
 	describe('createElm()', createElmSpec);
-	describe('selectElm()', selectElmSpec);
-	describe('bindEvent()', bindEventSpec);
+	// describe('selectElm()', selectElmSpec);
+	// describe('bindEvent()', bindEventSpec);
 });
