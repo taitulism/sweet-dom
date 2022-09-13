@@ -1,18 +1,41 @@
-export const $ = (qryStr, ctx = document) => ctx.querySelector(qryStr);
+type SelectorContext = Document | HTMLElement
 
-$.$$ = (qryStr, ctx = document) => {
-	const collection = ctx.querySelectorAll(qryStr);
-	return Array.from(collection);
-};
+/*
+The getElementsByClassName() and getElementsByTagName() methods return a live HTMLCollection.
 
-$.id = id => document.getElementById(id);
+The querySelectorAll() method returns a static NodeList.
+*/
 
-$.cls = (classNames, ctx = document) => {
-	const nodeList = ctx.getElementsByClassName(classNames);
+export const $ = (
+	qryStr: string,
+	ctx: SelectorContext = document,
+) => ctx.querySelector(qryStr);
+
+export const $$ = (
+	qryStr: string,
+	ctx: SelectorContext = document,
+) => {
+	const nodeList = ctx.querySelectorAll(qryStr);
+
 	return Array.from(nodeList);
 };
 
-$.tag = (tagName, ctx = document) => {
+export const $id = (id: string) => document.getElementById(id);
+
+export const $cls = (
+	classNames: string,
+	ctx: SelectorContext = document,
+) => {
+	const nodeList = ctx.getElementsByClassName(classNames);
+
+	return Array.from(nodeList);
+};
+
+export const $tag = (
+	tagName: string,
+	ctx: SelectorContext = document,
+) => {
 	const nodeList = ctx.getElementsByTagName(tagName);
+
 	return Array.from(nodeList);
 };

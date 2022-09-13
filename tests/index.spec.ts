@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import {createElmSpec} from './create.spec';
 import {selectElmSpec} from './select/select.spec';
 import {bindEventSpec} from './events/events.spec';
-import {$, createElm, bindEvent, bindEventOnce} from '../src';
+import {$, $$, $id, $cls, $tag, createElm, bindEvent, bindEventOnce} from '../src';
 
 globalThis.isBrowser = typeof globalThis.isBrowser === 'undefined'
 	? Boolean(globalThis.window)
@@ -13,6 +13,22 @@ describe('dom-lib', () => {
 	describe('exports', () => {
 		it('exports `$`', () => {
 			expect($).to.be.a('function');
+		});
+
+		it('exports `$$`', () => {
+			expect($$).to.be.a('function');
+		});
+
+		it('exports `$id`', () => {
+			expect($id).to.be.a('function');
+		});
+
+		it('exports `$cls`', () => {
+			expect($cls).to.be.a('function');
+		});
+
+		it('exports `$tag`', () => {
+			expect($tag).to.be.a('function');
 		});
 
 		it('exports `createElm`', () => {
@@ -28,7 +44,7 @@ describe('dom-lib', () => {
 		});
 	});
 
-	describe('createElm()', createElmSpec);
-	// describe('selectElm()', selectElmSpec);
-	describe('bindEvent()', bindEventSpec);
+	// describe('createElm()', createElmSpec);
+	describe('selectElm()', selectElmSpec);
+	// describe('bindEvent()', bindEventSpec);
 });
