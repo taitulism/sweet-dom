@@ -4,7 +4,10 @@ import {selectElmSpec} from './select/select.spec';
 import {bindEventSpec} from './events/events.spec';
 import {$, createElm, bindEvent, bindEventOnce} from '../src';
 
-globalThis.isBrowser = Boolean(globalThis.window);
+globalThis.isBrowser = typeof globalThis.isBrowser === 'undefined'
+	? Boolean(globalThis.window)
+	: globalThis.isBrowser
+;
 
 describe('dom-lib', () => {
 	describe('exports', () => {
@@ -27,5 +30,5 @@ describe('dom-lib', () => {
 
 	describe('createElm()', createElmSpec);
 	// describe('selectElm()', selectElmSpec);
-	// describe('bindEvent()', bindEventSpec);
+	describe('bindEvent()', bindEventSpec);
 });

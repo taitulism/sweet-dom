@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import { JSDOM } from 'jsdom';
+import {JSDOM} from 'jsdom';
 import {bindEvent, bindEventOnce} from '../../src/bind-event';
 
 const setWinDoc = (dom) => {
@@ -8,12 +8,14 @@ const setWinDoc = (dom) => {
 };
 
 export const bindEventSpec = () => {
-	let button;
-	beforeEach(() => {
+	let button: HTMLButtonElement | undefined;
+
+	beforeEach((done) => {
 		if (!globalThis.isBrowser) {
 			JSDOM.fromFile('./tests/events/events.html').then((dom) => {
 				setWinDoc(dom);
 				button = document.getElementById('the-button');
+				done();
 			});
 		}
 	});
@@ -21,108 +23,88 @@ export const bindEventSpec = () => {
 	afterEach(() => {
 		if (!globalThis.isBrowser) {
 			globalThis.window.close();
-			button = null;
-			globalThis.window = null;
-			globalThis.document = null;
+			button = undefined;
+			globalThis.window = undefined;
+			globalThis.document = undefined;
 		}
 	});
 
-	it('is a function', () => expect(on).to.be.a('function'));
-
-	it('binds listeners on elements', () => {
-		let called = false;
-		let event;
-
-		on(button, 'click', (ev) => {
-			called = true;
-			event = ev;
+	it('binds a listener on an element', (done) => {
+		const unbind = bindEvent(button!, 'click', (ev) => {
+			expect(ev).to.be.ok;
+			expect(ev.target).to.be.instanceOf(globalThis.window.HTMLButtonElement);
+			unbind();
+			done();
 		});
 
-		button.click();
-		expect(called).to.be.true;
-		expect(event).to.be.ok;
-		expect(event.target).to.be.instanceOf(globalThis.window.HTMLElement);
+		button!.click();
 	});
 
-	it('accepts a mix-up of the first two arguments', () => {
-		let called = false;
-		let event;
-
-		on('click', button, (ev) => {
-			called = true;
-			event = ev;
-		});
-
-		button.click();
-		expect(called).to.be.true;
-		expect(event).to.be.ok;
-		expect(event.target).to.be.instanceOf(globalThis.window.HTMLElement);
-	});
-
-	it('returns an event destruction function', () => {
+	it('returns a remove listener function', () => {
 		let callsCount = 0;
+		const unbind = bindEvent(button!, 'click', () => callsCount++);
 
-		const off = on(button, 'click', () => callsCount++);
-
+		expect(unbind).to.be.a('function');
 		expect(callsCount).to.equal(0);
-		button.click();
+		button!.click();
 		expect(callsCount).to.equal(1);
-		button.click();
+		button!.click();
 		expect(callsCount).to.equal(2);
-		off();
-		button.click();
+		unbind();
+		button!.click();
 		expect(callsCount).to.equal(2);
 	});
 
-	it('provides a `hover` event', (done) => {
-		let hoverCallesCount = 0;
+	it('accepts a `useCapture` boolean', () => {
+		const occurences: Array<string> = [];
+		const expectedResult = ['body capture', 'button', 'body bubble'];
+		const {body} = globalThis.window.document;
 
-		on(button, 'hover', () => {
-			hoverCallesCount++;
+		const unbind1 = bindEvent(body, 'click', () => {
+			occurences.push('body bubble');
+		}, false);
+
+		const unbind2 = bindEvent(body, 'click', () => {
+			occurences.push('body capture');
+		}, true);
+
+		const unbind3 = bindEvent(button!, 'click', () => {
+			occurences.push('button');
 		});
 
-		const mouseEnterEvent = new globalThis.window.Event('mouseenter');
-		const mouseLeaveEvent = new globalThis.window.Event('mouseleave');
-
-		expect(hoverCallesCount).to.equal(0);
-		button.dispatchEvent(mouseEnterEvent);
-		expect(hoverCallesCount).to.equal(1);
-
-		setTimeout(() => {
-			button.dispatchEvent(mouseLeaveEvent);
-			expect(hoverCallesCount).to.equal(2);
-			done();
-		}, 0);
+		button!.click();
+		expect(occurences).to.deep.equal(expectedResult);
+		unbind1();
+		unbind2();
+		unbind3();
 	});
 
-	it('provides a `hover` event with two callbacks', (done) => {
-		let enterCalled = false;
-		let leaveCalled = false;
-		let enterEvent, leaveEvent;
+	describe('bindEventOnce()', () => {
+		it('binds one-time listener on an element', () => {
+			let callsCount = 0;
+			const unbind = bindEventOnce(button!, 'click', () => callsCount++);
 
-		on(button, 'hover', (ev) => {
-			enterCalled = true;
-			enterEvent = ev;
-		}, (ev) => {
-			leaveCalled = true;
-			leaveEvent = ev;
+			expect(callsCount).to.equal(0);
+			button!.click();
+			expect(callsCount).to.equal(1);
+			button!.click();
+			expect(callsCount).to.equal(1);
+			unbind();
 		});
 
-		const mouseEnterEvent = new globalThis.window.Event('mouseenter');
-		const mouseLeaveEvent = new globalThis.window.Event('mouseleave');
+		it('returns a remove listener function', () => {
+			let callsCount = 0;
+			const unbind = bindEventOnce(button!, 'click', () => callsCount++);
 
-		button.dispatchEvent(mouseEnterEvent);
-
-		expect(enterCalled).to.be.true;
-		expect(enterEvent.target).to.be.instanceOf(globalThis.window.HTMLElement);
-
-		setTimeout(() => {
-			button.dispatchEvent(mouseLeaveEvent);
-
-			expect(leaveCalled).to.be.true;
-			expect(leaveEvent.target).to.be.instanceOf(globalThis.window.HTMLElement);
-
-			done();
-		}, 0);
+			expect(unbind).to.be.a('function');
+			button!.click();
+			expect(callsCount).to.equal(1);
+			button!.click();
+			expect(callsCount).to.equal(1);
+			unbind();
+			button!.click();
+			expect(callsCount).to.equal(1);
+		});
 	});
+
 };

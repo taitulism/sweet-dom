@@ -19,8 +19,8 @@ export const createElmSpec = () => {
 	after(() => {
 		if (!globalThis.isBrowser) {
 			globalThis.window.close();
-			globalThis.window = null;
-			globalThis.document = null;
+			globalThis.window = undefined;
+			globalThis.document = undefined;
 		}
 	});
 

@@ -1,12 +1,12 @@
 const ONCE = {once: true};
 
-export type MouseEventHandler = (ev: MouseEvent | WheelEvent) => void;
-export type EventListenerTarget = HTMLElement | Document | Window;
+// export type EventHandler = (ev: Event) => void;
+// export type EventListenerTarget = HTMLElement | Document | Window;
 
 export function bindEvent (
-	target: EventListenerTarget,
+	target: EventTarget,
 	eventName: string,
-	callback: MouseEventHandler, // TODO:! EventListener (types issues)
+	callback: EventListener,
 	options?: boolean | AddEventListenerOptions,
 ) {
 	target.addEventListener(eventName, callback as EventListener, options);
@@ -17,14 +17,14 @@ export function bindEvent (
 }
 
 export function bindEventOnce (
-	target: EventListenerTarget,
+	target: EventTarget,
 	eventName: string,
-	callback: MouseEventHandler,
-	options: boolean | AddEventListenerOptions,
+	callback: EventListener,
+	options?: boolean | AddEventListenerOptions,
 ) {
-	const opts = typeof options === 'boolean'
-		? {...ONCE, capture: options as boolean}
-		: options ? {...options as object, ...ONCE} : ONCE
+	const opts: AddEventListenerOptions = typeof options === 'boolean'
+		? {...ONCE, capture: options}
+		: options ? {...options, ...ONCE} : ONCE
 	;
 
 	return bindEvent(target, eventName, callback, opts);
