@@ -11,11 +11,6 @@ import {
 	put,
 } from '../src';
 
-globalThis.isBrowser = typeof globalThis.isBrowser === 'undefined'
-	? Boolean(globalThis.window)
-	: globalThis.isBrowser
-;
-
 describe('dom-lib', () => {
 	describe('exports', () => {
 		it('exports `$`', () => {

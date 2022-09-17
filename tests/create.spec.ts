@@ -1,15 +1,11 @@
 import * as jsdom from 'jsdom';
 import {expect} from 'chai';
 import {createElm} from '../src/create-elm';
-
-const setWinDoc = (dom: jsdom.JSDOM) => {
-	globalThis.window = dom.window;
-	globalThis.document = dom.window.document;
-};
+import {glb, setWinDoc} from './utils';
 
 export const createElmSpec = () => {
 	before(() => {
-		if (!globalThis.isBrowser) {
+		if (!glb.isBrowser) {
 			const dom = new jsdom.JSDOM('');
 
 			setWinDoc(dom);
@@ -17,10 +13,10 @@ export const createElmSpec = () => {
 	});
 
 	after(() => {
-		if (!globalThis.isBrowser) {
-			globalThis.window.close();
-			globalThis.window = undefined;
-			globalThis.document = undefined;
+		if (!glb.isBrowser) {
+			glb.window.close();
+			glb.window = undefined;
+			glb.document = undefined;
 		}
 	});
 

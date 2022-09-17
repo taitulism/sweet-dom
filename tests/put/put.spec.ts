@@ -1,11 +1,7 @@
 import {expect} from 'chai';
 import {JSDOM} from 'jsdom';
 import {put} from '../../src/put';
-
-const setWinDoc = (dom) => {
-	globalThis.window = dom.window;
-	globalThis.document = dom.window.document;
-};
+import {glb, setWinDoc} from '../utils';
 
 export const putElmSpec = () => {
 	let elm: HTMLElement;
@@ -14,32 +10,27 @@ export const putElmSpec = () => {
 	let childC: HTMLElement;
 
 	beforeEach((done) => {
-		if (!globalThis.isBrowser) {
+		if (!glb.isBrowser) {
 			JSDOM.fromFile('./tests/put/put.html').then((dom) => {
 				setWinDoc(dom);
 				elm = document.createElement('div');
 				elm.id = 'put-me';
 				elm.textContent = 'put';
 
-				childA = document.getElementById('child-A');
-				childB = document.getElementById('child-B');
-				childC = document.getElementById('child-C');
+				childA = document.getElementById('child-A')!;
+				childB = document.getElementById('child-B')!;
+				childC = document.getElementById('child-C')!;
 				done();
 			});
 		}
 	});
 
 	afterEach(() => {
-		if (!globalThis.isBrowser) {
-			globalThis.window.close();
-			globalThis.window = undefined;
-			globalThis.document = undefined;
+		if (!glb.isBrowser) {
+			glb.window.close();
+			glb.window = undefined;
+			glb.document = undefined;
 		}
-
-		elm = undefined;
-		childA = undefined;
-		childB = undefined;
-		childC = undefined;
 	});
 
 	it('returns a `Put` instance', () => {

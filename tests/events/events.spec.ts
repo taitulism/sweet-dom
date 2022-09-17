@@ -1,38 +1,34 @@
 import {expect} from 'chai';
 import {JSDOM} from 'jsdom';
 import {bindEvent, bindEventOnce} from '../../src/bind-event';
-
-const setWinDoc = (dom) => {
-	globalThis.window = dom.window;
-	globalThis.document = dom.window.document;
-};
+import {glb, setWinDoc} from '../utils';
 
 export const bindEventSpec = () => {
 	let button: HTMLButtonElement | undefined;
 
 	beforeEach((done) => {
-		if (!globalThis.isBrowser) {
+		if (!glb.isBrowser) {
 			JSDOM.fromFile('./tests/events/events.html').then((dom) => {
 				setWinDoc(dom);
-				button = document.getElementById('the-button');
+				button = document.getElementById('the-button') as HTMLButtonElement;
 				done();
 			});
 		}
 	});
 
 	afterEach(() => {
-		if (!globalThis.isBrowser) {
-			globalThis.window.close();
+		if (!glb.isBrowser) {
+			glb.window.close();
 			button = undefined;
-			globalThis.window = undefined;
-			globalThis.document = undefined;
+			glb.window = undefined;
+			glb.document = undefined;
 		}
 	});
 
 	it('binds a listener on an element', (done) => {
 		const unbind = bindEvent(button!, 'click', (ev) => {
 			expect(ev).to.be.ok;
-			expect(ev.target).to.be.instanceOf(globalThis.window.HTMLButtonElement);
+			expect(ev.target).to.be.instanceOf(glb.window.HTMLButtonElement);
 			unbind();
 			done();
 		});
@@ -58,7 +54,7 @@ export const bindEventSpec = () => {
 	it('accepts a `useCapture` boolean', () => {
 		const occurences: Array<string> = [];
 		const expectedResult = ['body capture', 'button', 'body bubble'];
-		const {body} = globalThis.window.document;
+		const {body} = glb.window.document;
 
 		const unbind1 = bindEvent(body, 'click', () => {
 			occurences.push('body bubble');
