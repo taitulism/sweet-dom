@@ -4,7 +4,7 @@ import type {
 	ElementContent,
 	ElementSelector,
 	HtmlTagName,
-	UnknownObject,
+	StandardObject,
 } from '~types';
 
 // TODO: Types. All over (include forIn)
@@ -59,26 +59,31 @@ function parseElmSelector (elmStr: string): ElementSelector {
 function setElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
 	forIn(attrs, (key, value) => {
 		if (key === 'style') {
-			setElmStyle(elm, value);
+			const style = value as StandardObject;
+
+			setElmStyle(elm, style);
 		}
 		else if (key === 'data') {
-			setElmData(elm, value);
+			const data = value as StandardObject;
+
+			setElmData(elm, data);
 		}
 		else {
-			elm.setAttribute(key, value);
+			elm.setAttribute(key as string, value as string);
 		}
 	});
 }
 
-function setElmStyle (elm: HTMLElement, style: UnknownObject) {
+function setElmStyle (elm: HTMLElement, style: StandardObject) {
 	forIn(style, (cssKey, cssValue) => {
+		// @ts-ignore
 		elm.style[cssKey] = cssValue;
 	});
 }
 
-function setElmData (elm: HTMLElement, data: UnknownObject) {
+function setElmData (elm: HTMLElement, data: StandardObject) {
 	forIn(data, (dataKey, dataValue) => {
-		elm.dataset[dataKey] = dataValue;
+		elm.dataset[dataKey] = dataValue as string;
 	});
 }
 

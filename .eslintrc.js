@@ -44,6 +44,7 @@ module.exports = {
 		'@typescript-eslint/no-non-null-assertion': 0,
 		'@typescript-eslint/no-unused-vars': 'error',
 		'@typescript-eslint/type-annotation-spacing': 'error',
+		'@typescript-eslint/ban-ts-comment': 'warn',
 		'semi': 'error',
 		'comma-dangle': ['error', 'always-multiline'],
 		'arrow-body-style': ['error', 'as-needed'],
