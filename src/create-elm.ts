@@ -5,7 +5,7 @@ import type {
 	ElementSelector,
 	HtmlTagName,
 	StandardObject,
-} from '~types';
+} from './types';
 
 // TODO: Types. All over (include forIn)
 

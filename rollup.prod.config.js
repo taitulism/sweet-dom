@@ -22,7 +22,7 @@ const esm = {
 };
 
 const declarationFile = {
-	input: './dist/esm/temp-dts/index.d.ts',
+	input: './dist/esm/temp-dts/src/index.d.ts',
 	plugins: [dts()],
 	output: [{
 		file: pkg.types,
