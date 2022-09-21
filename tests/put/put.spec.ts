@@ -41,7 +41,6 @@ export const putElmSpec = () => {
 		expect(putElm.before).to.be.a('function');
 		expect(putElm.after).to.be.a('function');
 		expect(putElm.inside).to.be.a('function');
-		expect(putElm.instead).to.be.a('function');
 	});
 
 	it('.before()', () => {
@@ -61,19 +60,6 @@ export const putElmSpec = () => {
 		expect(childC.nextSibling).to.be.a('null');
 		put(elm).after(childC);
 		expect(childC.nextSibling).to.deep.equal(elm);
-	});
-
-	it('.instead()', () => {
-		const parentElm = document.getElementById('parent')!;
-
-		expect(childA.nextElementSibling!.id).to.equal('child-B');
-
-		expect(parentElm.children).to.have.lengthOf(3);
-		put(elm).instead(childB);
-		expect(parentElm.children).to.have.lengthOf(3);
-
-		expect(childA.nextElementSibling!.id).to.equal('put-me');
-		expect(document.getElementById('child-B')).to.be.equal(null);
 	});
 
 	describe('.inside()', () => {

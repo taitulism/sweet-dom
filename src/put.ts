@@ -17,10 +17,6 @@ class Put {
 		otherElm.parentNode?.insertBefore(this.elm, otherElm.nextSibling);
 	}
 
-	instead (otherElm: HTMLElement) {
-		otherElm.parentNode?.replaceChild(this.elm, otherElm);
-	}
-
 	inside (parent: HTMLElement, index: number = -1, withNodes: boolean = false) {
 		const children = withNodes ? parent.childNodes : parent.children;
 
