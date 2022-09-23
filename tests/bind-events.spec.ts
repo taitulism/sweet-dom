@@ -1,28 +1,24 @@
 import {expect} from 'chai';
-import {JSDOM} from 'jsdom';
-import {bindEvent, bindEventOnce} from '../../src/bind-event';
-import {glb, setWinDoc} from '../utils';
+import * as jsdom from 'jsdom';
+import {bindEvent, bindEventOnce} from '../src/bind-event';
+import {glb, setWinDoc} from './utils';
 
 export const bindEventSpec = () => {
 	let button: HTMLButtonElement | undefined;
 
 	beforeEach((done) => {
-		if (!glb.isBrowser) {
-			JSDOM.fromFile('./tests/events/events.html').then((dom) => {
-				setWinDoc(dom);
-				button = document.getElementById('the-button') as HTMLButtonElement;
-				done();
-			});
-		}
+		const dom = new jsdom.JSDOM('<button id="the-button">Click</button>');
+
+		setWinDoc(dom);
+		button = document.getElementById('the-button') as HTMLButtonElement;
+		done();
 	});
 
 	afterEach(() => {
-		if (!glb.isBrowser) {
-			glb.window.close();
-			button = undefined;
-			glb.window = undefined;
-			glb.document = undefined;
-		}
+		glb.window.close();
+		button = undefined;
+		glb.window = undefined;
+		glb.document = undefined;
 	});
 
 	it('binds a listener on an element', (done) => {

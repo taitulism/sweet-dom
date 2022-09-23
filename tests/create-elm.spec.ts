@@ -5,19 +5,15 @@ import {glb, setWinDoc} from './utils';
 
 export const createElmSpec = () => {
 	before(() => {
-		if (!glb.isBrowser) {
-			const dom = new jsdom.JSDOM('');
+		const dom = new jsdom.JSDOM('');
 
-			setWinDoc(dom);
-		}
+		setWinDoc(dom);
 	});
 
 	after(() => {
-		if (!glb.isBrowser) {
-			glb.window.close();
-			glb.window = undefined;
-			glb.document = undefined;
-		}
+		glb.window.close();
+		glb.window = undefined;
+		glb.document = undefined;
 	});
 
 	it('creates HTML elements', () => {

@@ -1,8 +1,8 @@
 import {expect} from 'chai';
 import {createElmSpec} from './create-elm.spec';
-import {selectElmSpec} from './select/select.spec';
-import {bindEventSpec} from './events/events.spec';
-import {putElmSpec} from './put/put.spec';
+import {selectElmSpec} from './select-elm.spec';
+import {bindEventSpec} from './bind-events.spec';
+import {putElmSpec} from './put-elm.spec';
 import {
 	$, $$, $id, $cls, $tag,
 	createElm,

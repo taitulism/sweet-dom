@@ -1,24 +1,20 @@
 import {expect} from 'chai';
 import {JSDOM} from 'jsdom';
-import {$, $$, $id, $cls, $tag} from '../../src/select-elm';
-import {glb, setWinDoc} from '../utils';
+import {$, $$, $id, $cls, $tag} from '../src/select-elm';
+import {glb, setWinDoc} from './utils';
 
 export const selectElmSpec = () => {
 	before((done) => {
-		if (!glb.isBrowser) {
-			JSDOM.fromFile('./tests/select/select.html').then((dom) => {
-				setWinDoc(dom);
-				done();
-			});
-		}
+		JSDOM.fromFile('./tests/html/select-elm.html').then((dom) => {
+			setWinDoc(dom);
+			done();
+		});
 	});
 
 	after(() => {
-		if (!glb.isBrowser) {
-			glb.window.close();
-			glb.window = undefined;
-			glb.document = undefined;
-		}
+		glb.window.close();
+		glb.window = undefined;
+		glb.document = undefined;
 	});
 
 	describe('$', () => {

@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {JSDOM} from 'jsdom';
-import {put} from '../../src/put';
-import {glb, setWinDoc} from '../utils';
+import {put} from '../src/put';
+import {glb, setWinDoc} from './utils';
 
 export const putElmSpec = () => {
 	let elm: HTMLElement;
@@ -10,27 +10,23 @@ export const putElmSpec = () => {
 	let childC: HTMLElement;
 
 	beforeEach((done) => {
-		if (!glb.isBrowser) {
-			JSDOM.fromFile('./tests/put/put.html').then((dom) => {
-				setWinDoc(dom);
-				elm = document.createElement('div');
-				elm.id = 'put-me';
-				elm.textContent = 'put';
+		JSDOM.fromFile('./tests/html/put-elm.html').then((dom) => {
+			setWinDoc(dom);
+			elm = document.createElement('div');
+			elm.id = 'put-me';
+			elm.textContent = 'put';
 
-				childA = document.getElementById('child-A')!;
-				childB = document.getElementById('child-B')!;
-				childC = document.getElementById('child-C')!;
-				done();
-			});
-		}
+			childA = document.getElementById('child-A')!;
+			childB = document.getElementById('child-B')!;
+			childC = document.getElementById('child-C')!;
+			done();
+		});
 	});
 
 	afterEach(() => {
-		if (!glb.isBrowser) {
-			glb.window.close();
-			glb.window = undefined;
-			glb.document = undefined;
-		}
+		glb.window.close();
+		glb.window = undefined;
+		glb.document = undefined;
 	});
 
 	it('returns a `Put` instance', () => {
@@ -87,7 +83,7 @@ export const putElmSpec = () => {
 
 		it('appends by index - with text nodes', () => {
 			expect(parent.childNodes.length).to.equal(6);
-			expect(parent.childNodes[4].textContent).to.equal('\n\t\t\t');
+			expect(parent.childNodes[4].textContent).to.equal('\n\t');
 
 			put(elm).inside(parent, 4, true);
 
