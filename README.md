@@ -177,19 +177,17 @@ put(newElm).inside(parent, 1, true)
 Development
 ===========
 
-Browser Playground / Tests
---------------------------
-1. `npm run dev`
-2. Open file in the browser:
-	* `<PATH_TO>/playground/playground.html` 
-<!-- TODO: -->
-<!-- * `<PATH_TO>/tests/spec.html` -->
+TDD
+---
+`npm run dev` - Run Mocha tests + watch
 
 &nbsp;
 
-TDD
----
-`test:watch` - Run Mocha tests + watch
+Playground
+----------
+1. `npm run play`
+2. Open file in the browser:
+	* `<PATH_TO>/playground/playground.html` 
 
 &nbsp;
 
