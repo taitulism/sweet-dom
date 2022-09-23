@@ -1,24 +1,17 @@
 import {$, createElm, bindEvent, bindEventOnce} from '../src';
 
-// #region Setup & Types
-declare global {
-	interface Window {
-		$: typeof $;
-		createElm: typeof createElm;
-		bindEvent: typeof bindEvent;
-		bindEventOnce: typeof bindEventOnce;
-	}
-}
+const style = {
+	margin: '50px',
+	display: 'inline-block',
+	textDecoration: 'underline',
+	color: 'blue',
+	cursor: 'pointer',
+};
 
-window.$ = $;
-window.createElm = createElm;
-window.bindEvent = bindEvent;
-window.bindEventOnce = bindEventOnce;
+const link = createElm('span#link', {style, href: '#'}, 'Click');
 
-// #endregion
-/* -------------------------------------------------- */
-
-const link = createElm('a', {href: 'http://google.com'});
-link.textContent = 'Click';
+bindEventOnce(link, 'click', () => {
+	alert('ok');
+});
 
 document.body.appendChild(link);

@@ -15,15 +15,16 @@
    "homepage": "https://github.com/taitulism/dom-lib#readme",
    "repository": "github:taitulism/dom-lib",
    "scripts": {
-      "dev": "rollup --config rollup.dev.config.js --watch",
+      "dev": "npm run test:watch",
+      "play": "rollup --config rollup.dev.config.js --watch",
       "build": "rollup --config rollup.prod.config.js",
       "prebuild": "rm -rf ./dist",
       "postbuild": "rm -rf ./dist/esm/temp-dts",
       "test": "mocha",
       "test:watch": "mocha --watch-files src,tests --watch",
+      "check": "npm run lint && npm run check:types && npm test",
       "check:types": "tsc --noEmit",
       "lint": "eslint ./src ./tests",
-      "check": "npm run lint && npm run check:types && npm test",
       "prepublishOnly": "npm run build",
       "preversion": "npm run check",
       "postversion": "git push && git push --tags"

@@ -6,8 +6,6 @@ import typescript from '@rollup/plugin-typescript';
 console.log(`
 ****************************************
 Playground - playground/playground.html'
-
-Testing    - tests/spec.html'
 ****************************************
 `);
 
@@ -21,19 +19,6 @@ const playground = {
 	},
 };
 
-const tests = {
-	input: 'tests/index.spec.ts',
-	plugins: [typescript()],
-	external: ['chai', 'jsdom'],
-	output: {
-		sourcemap: true,
-		file: 'dev-bundles/tests-specs.js',
-		format: 'iife',
-		globals: {chai: 'chai', jsdom: 'jsdom'},
-	},
-};
-
 export default [
 	playground,
-	tests,
 ];
