@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {JSDOM} from 'jsdom';
-import {$, $$, $id, $class, $tag} from '../src/select-elm';
+import {$, $$} from '../src/select-elm';
 import {glb, setWinDoc} from './utils';
 
 export const selectElmSpec = () => {
@@ -33,10 +33,10 @@ export const selectElmSpec = () => {
 	});
 
 	describe('$$', () => {
-		it('returns an array', () => {
+		it('returns a NodeList', () => {
 			const elms = $$('*[class=box]');
 
-			expect(elms).to.be.an('array');
+			expect(elms).to.be.an('NodeList');
 		});
 
 		it('selects using native `querySelectorAll`', () => {
@@ -55,71 +55,6 @@ export const selectElmSpec = () => {
 
 			expect(elms).to.have.lengthOf(1);
 			expect(elms[0].nodeName).to.equal('SPAN');
-		});
-	});
-
-	describe('$id', () => {
-		it('selects an element by id', () => {
-			const elm = $id('root')!;
-
-			expect(elm.nodeName).to.equal('MAIN');
-		});
-	});
-
-	describe('$class', () => {
-		it('returns an array', () => {
-			const elms = $class('box');
-
-			expect(elms).to.be.an('array');
-		});
-
-		it('$class - single classname', () => {
-			const elms = $class('box');
-
-			expect(elms.length).to.equal(4);
-			expect(elms[0].nodeName).to.equal('SECTION');
-			expect(elms[1].nodeName).to.equal('DIV');
-			expect(elms[2].nodeName).to.equal('DIV');
-			expect(elms[3].nodeName).to.equal('SPAN');
-		});
-
-		it('$class - with context', () => {
-			const ctx = $id('side-menu')!;
-			const elms = $class('box', ctx);
-
-			expect(elms.length).to.equal(1);
-			expect(elms[0].nodeName).to.equal('SPAN');
-		});
-
-		it('$class - multiple classnames', () => {
-			const elms = $class('special box');
-
-			expect(elms.length).to.equal(1);
-			expect(elms[0].nodeName).to.equal('SECTION');
-		});
-	});
-
-	describe('$tag', () => {
-		it('returns an array', () => {
-			const elms = $tag('div');
-
-			expect(elms).to.be.an('array');
-		});
-
-		it('$tag', () => {
-			const elms = $tag('div');
-
-			expect(elms.length).to.equal(3);
-			expect(elms[0].textContent).to.equal('box-b');
-			expect(elms[1].textContent).to.equal('box-c');
-		});
-
-		it('$tag - with context', () => {
-			const ctx = $id('side-menu')!;
-			const elms = $tag('div', ctx);
-
-			expect(elms.length).to.equal(1);
-			expect(elms[0].textContent).to.equal('box-f');
 		});
 	});
 };

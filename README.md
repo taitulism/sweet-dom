@@ -6,10 +6,39 @@ dom-lib
 =======
 A thin DOM wrapper to make common vanilla operations a bit more convenient.
 
-* [Element Creation](#element-creation)
 * [Element Selection](#element-selection)
 * [Event Binding](#event-binding)
+* [Element Creation](#element-creation)
 * [DOM Manipulation](#dom-manipulation)
+
+
+Element Selection
+-----------------
+* **`$`** &nbsp; - alias for `document.querySelector()`
+* **`$$`** - alias for `document.querySelectorAll()`
+
+Example:
+```js
+const elm = $('#my-id');
+const elms = $$('.my-classname');
+```
+
+Event Binding
+-------------
+* **`bindEvent`**
+* **`bindEventOnce`**
+
+A wrapper around `addEventListener()`.
+### Return: remove-listener function
+
+Example:
+```js
+const unBindClick = bindEvent(elm, 'click', (ev) => {...});
+// or:
+const unBindClick = bindEventOnce(elm, 'click', (ev) => {...});
+
+unBindClick();
+```
 
 
 Element Creation
@@ -61,33 +90,6 @@ const content = 'Click';
 
 createElm(selector, content)
 // <button>Click</button>
-```
-
-
-Element Selection
------------------
-* **`$`** - A shortcut for `document.querySelector()`
-* **`$$`** - A shortcut for `document.querySelectorAll()`
-* **`$id`** - A shortcut for `document.getElementById()`
-* **`$class`** - A shortcut for `document.getElementsByClassName()`
-* **`$tag`** - A shortcut for `document.getElementsByTagName()`
-
-> The methods that return multiple elements, `$$`, `$class`, `$tag` - returns an array of elements instead of live-collections or node-lists.
-
-> All methods except `$id` also accepts a second argument: the context element to query (the default is `document`).
-
-
-Event Binding
--------------
-* **`bindEvent`**
-* **`bindEventOnce`**
-
-A wrapper around `addEventListener()`.
-### Return: remove-listener function
-
-Example:
-```js
-const unBindClick = bindEvent(elm, 'click', (ev) => {...});
 ```
 
 

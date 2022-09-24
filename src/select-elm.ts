@@ -1,11 +1,5 @@
 type SelectorContext = Document | HTMLElement
 
-/*
-TODO:!
-	* `querySelectorAll` returns a static NodeList.
-	* `getElementsByClassName` & `getElementsByTagName` return a live HTMLCollection.
-*/
-
 export const $ = (
 	qryStr: string,
 	ctx: SelectorContext = document,
@@ -14,16 +8,4 @@ export const $ = (
 export const $$ = (
 	qryStr: string,
 	ctx: SelectorContext = document,
-) => Array.from(ctx.querySelectorAll(qryStr));
-
-export const $id = (id: string) => document.getElementById(id);
-
-export const $class = (
-	classNames: string,
-	ctx: SelectorContext = document,
-) => Array.from(ctx.getElementsByClassName(classNames));
-
-export const $tag = (
-	tagName: string,
-	ctx: SelectorContext = document,
-) => Array.from(ctx.getElementsByTagName(tagName));
+) => ctx.querySelectorAll(qryStr);
