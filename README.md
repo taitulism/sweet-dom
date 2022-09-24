@@ -98,9 +98,10 @@ DOM Manipulation
 For placing elements.
 
 **`put(elm)`**
+> All methods accept an element or an query selector string.
 * **`.before(anotherElm)`**
 * **`.after(anotherElm)`**
-* **`.inside(parent, childIndex, withNodes)`**
+* **`.inside(containerElm, childIndex, withNodes)`**
 
 Examples:
 
@@ -120,52 +121,52 @@ put(elmA).after(elmB)
 // <elmA>
 ```
 
-`.inside(parent, childIndex, withNodes)`
+`.inside(container, childIndex, withNodes)`
 ```js
-put(newElm).inside(parent)
+put(newElm).inside(container)
 
 /* 
-  <parent>
+  <container>
     <elmA>
     <elmB>
     <newElm> last by default
-  </parent>
+  </container>
 */
 ```
 ```js
-put(newElm).inside(parent, 0)
+put(newElm).inside(container, 0)
 
 /* 
-  <parent>
+  <container>
     <newElm> child index 0
     <elmA>
     <elmB>
-  </parent>
+  </container>
 */
 ```
 ```js
-put(newElm).inside(parent, -2)
+put(newElm).inside(container, -2)
 
 /* 
-  <parent>
+  <container>
     <elmA>   -4
     <elmB>   -3
     <newElm> -2
     <elmC>   -1
-  </parent>
+  </container>
 */
 ```
 ```js
-put(newElm).inside(parent, 1, true)
+put(newElm).inside(container, 1, true)
 
 /* 
-  <parent>
+  <container>
     hello 0
     <newElm> 1 when also counting text-nodes
     <elmA> 2
     world 3
     <elmB> 4
-  </parent>
+  </container>
 */
 ```
 

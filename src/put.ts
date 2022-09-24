@@ -1,3 +1,9 @@
+const getElm = (elmOrSelector: HTMLElement | string): HTMLElement | null => (
+	typeof elmOrSelector === 'string'
+		? document.querySelector(elmOrSelector)
+		: elmOrSelector
+);
+
 export function put (elm: HTMLElement) {
 	return new Put(elm);
 }
@@ -9,15 +15,27 @@ class Put {
 		this.elm = elm;
 	}
 
-	before (otherElm: HTMLElement) {
-		otherElm.parentNode?.insertBefore(this.elm, otherElm);
+	before (otherElmOrSelector: HTMLElement | string) {
+		const otherElm = getElm(otherElmOrSelector);
+
+		otherElm?.parentNode?.insertBefore(this.elm, otherElm);
 	}
 
-	after (otherElm: HTMLElement) {
-		otherElm.parentNode?.insertBefore(this.elm, otherElm.nextSibling);
+	after (otherElmOrSelector: HTMLElement | string) {
+		const otherElm = getElm(otherElmOrSelector);
+
+		otherElm?.parentNode?.insertBefore(this.elm, otherElm.nextSibling);
 	}
 
-	inside (parent: HTMLElement, index: number = -1, withNodes: boolean = false) {
+	inside (
+		parentOrSelector: HTMLElement | string,
+		index: number = -1,
+		withNodes: boolean = false,
+	) {
+		const parent = getElm(parentOrSelector);
+
+		if (!parent) return;
+
 		const children = withNodes ? parent.childNodes : parent.children;
 
 		index = index >= 0 ? index : children.length + 1 + index;

@@ -39,23 +39,40 @@ export const putElmSpec = () => {
 		expect(putElm.inside).to.be.a('function');
 	});
 
-	it('.before()', () => {
-		expect(childA.nextElementSibling!.id).to.equal('child-B');
-		put(elm).before(childB);
-		expect(childA.nextElementSibling!.id).to.equal('put-me');
-		expect(elm.nextElementSibling!.id).to.equal('child-B');
+	describe('.before()', () => {
+		it('.before(elm)', () => {
+			expect(childA.nextElementSibling!.id).to.equal('child-B');
+			put(elm).before(childB);
+			expect(childA.nextElementSibling!.id).to.equal('put-me');
+			expect(elm.nextElementSibling!.id).to.equal('child-B');
+		});
+
+		it('.before(selector)', () => {
+			expect(childA.nextElementSibling!.id).to.equal('child-B');
+			put(elm).before('#child-B');
+			expect(childA.nextElementSibling!.id).to.equal('put-me');
+			expect(elm.nextElementSibling!.id).to.equal('child-B');
+		});
 	});
 
-	it('.after()', () => {
-		expect(childA.nextSibling!.textContent!.trim()).to.equal('');
-		put(elm).after(childA);
-		expect(childA.nextSibling!.textContent!.trim()).to.equal('put');
-	});
+	describe('.after()', () => {
+		it('.after(elm)', () => {
+			expect(childA.nextSibling!.textContent!.trim()).to.equal('');
+			put(elm).after(childA);
+			expect(childA.nextSibling!.textContent!.trim()).to.equal('put');
+		});
 
-	it('.after() - last child (no nextSibling)', () => {
-		expect(childC.nextSibling).to.be.a('null');
-		put(elm).after(childC);
-		expect(childC.nextSibling).to.deep.equal(elm);
+		it('.after(selector)', () => {
+			expect(childA.nextSibling!.textContent!.trim()).to.equal('');
+			put(elm).after('#child-A');
+			expect(childA.nextSibling!.textContent!.trim()).to.equal('put');
+		});
+
+		it('.after(elm) - after last child (no nextSibling)', () => {
+			expect(childC.nextSibling).to.be.a('null');
+			put(elm).after(childC);
+			expect(childC.nextSibling).to.deep.equal(elm);
+		});
 	});
 
 	describe('.inside()', () => {
@@ -65,7 +82,25 @@ export const putElmSpec = () => {
 			parent = document.getElementById('parent')!;
 		});
 
-		it('appends by index', () => {
+		it('appends to element', () => {
+			expect(parent.childElementCount).to.equal(3);
+			put(elm).inside(parent);
+			expect(parent.childElementCount).to.equal(4);
+		});
+
+		it('appends to selector', () => {
+			expect(parent.childElementCount).to.equal(3);
+			put(elm).inside('#parent');
+			expect(parent.childElementCount).to.equal(4);
+		});
+
+		it('appends last by default', () => {
+			expect(parent.lastElementChild!.id).to.equal('child-C');
+			put(elm).inside(parent);
+			expect(parent.lastElementChild!.id).to.equal('put-me');
+		});
+
+		it('appends at given index', () => {
 			expect(parent.children).to.have.lengthOf(3);
 			expect(childA.nextElementSibling!.id).to.equal('child-B');
 
@@ -75,13 +110,7 @@ export const putElmSpec = () => {
 			expect(parent.children).to.have.lengthOf(4);
 		});
 
-		it('appends last by default', () => {
-			expect(parent.lastElementChild!.id).to.equal('child-C');
-			put(elm).inside(parent);
-			expect(parent.lastElementChild!.id).to.equal('put-me');
-		});
-
-		it('appends by index - with text nodes', () => {
+		it('appends at given index - with text nodes', () => {
 			expect(parent.childNodes.length).to.equal(6);
 			expect(parent.childNodes[4].textContent).to.equal('\n\t');
 
