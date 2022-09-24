@@ -4,7 +4,7 @@ import {selectElmSpec} from './select-elm.spec';
 import {bindEventSpec} from './bind-events.spec';
 import {putElmSpec} from './put-elm.spec';
 import {
-	$, $$, $id, $cls, $tag,
+	$, $$, $id, $class, $tag,
 	createElm,
 	bindEvent,
 	bindEventOnce,
@@ -25,8 +25,8 @@ describe('dom-lib', () => {
 			expect($id).to.be.a('function');
 		});
 
-		it('exports `$cls`', () => {
-			expect($cls).to.be.a('function');
+		it('exports `$class`', () => {
+			expect($class).to.be.a('function');
 		});
 
 		it('exports `$tag`', () => {

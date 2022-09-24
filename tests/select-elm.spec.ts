@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {JSDOM} from 'jsdom';
-import {$, $$, $id, $cls, $tag} from '../src/select-elm';
+import {$, $$, $id, $class, $tag} from '../src/select-elm';
 import {glb, setWinDoc} from './utils';
 
 export const selectElmSpec = () => {
@@ -66,15 +66,15 @@ export const selectElmSpec = () => {
 		});
 	});
 
-	describe('$cls', () => {
+	describe('$class', () => {
 		it('returns an array', () => {
-			const elms = $cls('box');
+			const elms = $class('box');
 
 			expect(elms).to.be.an('array');
 		});
 
-		it('$cls - single classname', () => {
-			const elms = $cls('box');
+		it('$class - single classname', () => {
+			const elms = $class('box');
 
 			expect(elms.length).to.equal(4);
 			expect(elms[0].nodeName).to.equal('SECTION');
@@ -83,16 +83,16 @@ export const selectElmSpec = () => {
 			expect(elms[3].nodeName).to.equal('SPAN');
 		});
 
-		it('$cls - with context', () => {
+		it('$class - with context', () => {
 			const ctx = $id('side-menu')!;
-			const elms = $cls('box', ctx);
+			const elms = $class('box', ctx);
 
 			expect(elms.length).to.equal(1);
 			expect(elms[0].nodeName).to.equal('SPAN');
 		});
 
-		it('$cls - multiple classnames', () => {
-			const elms = $cls('special box');
+		it('$class - multiple classnames', () => {
+			const elms = $class('special box');
 
 			expect(elms.length).to.equal(1);
 			expect(elms[0].nodeName).to.equal('SECTION');

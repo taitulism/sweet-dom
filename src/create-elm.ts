@@ -74,6 +74,7 @@ function setElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
 	});
 }
 
+// TODO: CSSStyleDeclaration
 function setElmStyle (elm: HTMLElement, style: StandardObject) {
 	forIn(style, (cssKey, cssValue) => {
 		// @ts-ignore

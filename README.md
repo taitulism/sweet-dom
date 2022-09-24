@@ -69,10 +69,10 @@ Element Selection
 * **`$`** - A shortcut for `document.querySelector()`
 * **`$$`** - A shortcut for `document.querySelectorAll()`
 * **`$id`** - A shortcut for `document.getElementById()`
-* **`$cls`** - A shortcut for `document.getElementsByClassName()`
+* **`$class`** - A shortcut for `document.getElementsByClassName()`
 * **`$tag`** - A shortcut for `document.getElementsByTagName()`
 
-> The methods that return multiple elements, `$$`, `$cls`, `$tag` - returns an array of elements instead of live-collections or node-lists.
+> The methods that return multiple elements, `$$`, `$class`, `$tag` - returns an array of elements instead of live-collections or node-lists.
 
 > All methods except `$id` also accepts a second argument: the context element to query (the default is `document`).
 
