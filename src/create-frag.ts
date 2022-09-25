@@ -1,4 +1,4 @@
-import {Content} from '~types';
+import {Content} from './types';
 
 export function createFrag (...contents: Array<Content>): DocumentFragment {
 	const frag = document.createDocumentFragment();
