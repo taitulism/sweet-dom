@@ -39,6 +39,17 @@ export const putElmSpec = () => {
 		expect(putElm.inside).to.be.a('function');
 	});
 
+	it('accepts a fragment', () => {
+		const frag = document.createDocumentFragment();
+
+		frag.append(childA, childB);
+
+		expect(childC.nextElementSibling).to.be.a('null');
+		put(frag).after(childC);
+		expect(childC.nextElementSibling!.id).to.equal('child-A');
+		expect(childA.nextElementSibling!.id).to.equal('child-B');
+	});
+
 	describe('.before()', () => {
 		it('.before(elm)', () => {
 			expect(childA.nextElementSibling!.id).to.equal('child-B');

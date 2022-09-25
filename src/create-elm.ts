@@ -88,7 +88,9 @@ function setElmData (elm: HTMLElement, data: StandardObject) {
 	});
 }
 
+// TODO: reduce types: ElementContent and Content
 function setElmContent (elm: HTMLElement, content: ElementContent) {
+	// TODO: what textContent equals when contents are: [string, elm,  string]?
 	if (typeof content === 'string') {
 		elm.textContent = content;
 	}
@@ -96,6 +98,7 @@ function setElmContent (elm: HTMLElement, content: ElementContent) {
 		elm.appendChild(content);
 	}
 	else if (Array.isArray(content)) {
+		// TODO: string content inside an array doesn't support strings.
 		content.forEach((child) => {
 			elm.appendChild(child);
 		});

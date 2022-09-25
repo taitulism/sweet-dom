@@ -25,10 +25,11 @@ const elms = $$('.my-classname');
 
 Event Binding
 -------------
-* **`bindEvent`**
-* **`bindEventOnce`**
+* **`bindEvent()`**
+* **`bindEventOnce()`**
 
 A wrapper around `addEventListener()`.
+Accepts the same arguments ([`addEventListener` on MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener))
 ### Return: remove-listener function
 
 Example:
@@ -43,10 +44,13 @@ unBindClick();
 
 Element Creation
 ----------------
-### `createElm(selector, attributes, content)`
-### Return: HTMLElement
+* **`createElm()`**
+* **`createFrag()`**
+### Return: `HTMLElement` or `DocumentFragment`, respectively.
 
-### **selector** - Required
+### **createElm(selector, attributes, content)**
+
+#### **selector** - Required
 A string descriptor of an element. Supports a tag-name, an ID and classnames of the following format:
 ```js
 'tag#id.classname1.classname2'
@@ -60,7 +64,7 @@ createElm(selector)
 // <input id="first-name" classname="form-field required-field" />
 ```
 
-### **attributes**
+#### **attributes**
 An object whose properties will be set as the element attributes.
 Two special keys are `style` and `data` which expected to be objects. The `style` object is to set inline style properties and the `data` is for data-attributes.
 
@@ -81,8 +85,10 @@ createElm(selector, attributes)
 // <input type="text" style="margin: 5px;" data-something="yes" />
 ```
 
-### **content**
-The element content. Could be either a string, an element or an array of elements.
+#### **contents**
+<!-- TODO: improve explanation -->
+The element contents. Could be either a string, an element or an array of elements.
+
 Example:
 ```js
 const selector = 'button';
@@ -90,6 +96,15 @@ const content = 'Click';
 
 createElm(selector, content)
 // <button>Click</button>
+```
+
+
+### **createFrag(...contents?)**
+### **`contents`** - [same as `createElm` above](#contents)
+
+Example:
+```js
+createFrag(elm1, elm2, 'some string', elm3)
 ```
 
 

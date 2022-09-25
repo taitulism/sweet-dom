@@ -1,4 +1,5 @@
-export type ElementContent = string | Node | Array<Node>
+export type Content = Node | string;
+export type ElementContent = Content | Array<Node> // TODO: Array<Content>
 export type StandardObject = {[key: string]: string | number};
 
 export interface ElementAttributes {

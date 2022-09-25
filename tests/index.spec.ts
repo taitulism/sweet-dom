@@ -1,11 +1,13 @@
 import {expect} from 'chai';
 import {createElmSpec} from './create-elm.spec';
+import {createFragSpec} from './create-frag.spec';
 import {selectElmSpec} from './select-elm.spec';
 import {bindEventSpec} from './bind-events.spec';
 import {putElmSpec} from './put-elm.spec';
 import {
 	$, $$,
 	createElm,
+	createFrag,
 	bindEvent,
 	bindEventOnce,
 	put,
@@ -25,6 +27,10 @@ describe('dom-lib', () => {
 			expect(createElm).to.be.a('function');
 		});
 
+		it('exports `createFrag`', () => {
+			expect(createFrag).to.be.a('function');
+		});
+
 		it('exports `bindEvent`', () => {
 			expect(bindEvent).to.be.a('function');
 		});
@@ -39,6 +45,7 @@ describe('dom-lib', () => {
 	});
 
 	describe('createElm()', createElmSpec);
+	describe('createFrag()', createFragSpec);
 	describe('selectElm()', selectElmSpec);
 	describe('bindEvent()', bindEventSpec);
 	describe('put()', putElmSpec);
