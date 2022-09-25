@@ -1,4 +1,5 @@
-import {$, createElm, bindEvent, bindEventOnce} from '../src';
+import {createElm, bindEvent} from '../src';
+import {startBenchmark} from './benchmark';
 
 const style = {
 	margin: '50px',
@@ -10,8 +11,9 @@ const style = {
 
 const link = createElm('span#link', {style, href: '#'}, 'Click');
 
-bindEventOnce(link, 'click', () => {
+bindEvent(link, 'click', () => {
 	alert('ok');
+	// startBenchmark();
 });
 
 document.body.appendChild(link);
