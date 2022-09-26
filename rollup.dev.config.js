@@ -1,4 +1,4 @@
-// TODO: .ts extension
+// TODO:env .ts extension
 // import type {RollupOptions} from 'rollup';
 import typescript from '@rollup/plugin-typescript';
 

@@ -9,8 +9,6 @@ import type {
 	StyleObj,
 } from './types';
 
-// TODO: Types. All over (include forIn)
-
 export function createElm (
 	elmStr: string,
 	attrs?: AllElementAttributes | ElementContents,
