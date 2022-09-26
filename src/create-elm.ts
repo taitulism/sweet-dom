@@ -1,4 +1,4 @@
-import {setElmStyle} from './elm-utils';
+import {setElmStyle, setElmData} from './elm-utils';
 import {forIn} from './for-in';
 import type {
 	ElementAttributes,
@@ -72,12 +72,6 @@ function setElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
 		else {
 			elm.setAttribute(key as string, value as string);
 		}
-	});
-}
-
-function setElmData (elm: HTMLElement, data: StandardObject) {
-	forIn(data, (dataKey, dataValue) => {
-		elm.dataset[dataKey] = dataValue as string;
 	});
 }
 

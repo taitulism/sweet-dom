@@ -7,9 +7,10 @@ import {bindEventSpec} from './bind-events.spec';
 import {putElmSpec} from './put-elm.spec';
 import {
 	$, $$,
+	setElmStyle,
+	setElmData,
 	createElm,
 	createFrag,
-	setElmStyle,
 	bindEvent,
 	bindEventOnce,
 	put,
@@ -33,6 +34,10 @@ describe('dom-lib', () => {
 			expect(setElmStyle).to.be.a('function');
 		});
 
+		it('exports `setElmData`', () => {
+			expect(setElmData).to.be.a('function');
+		});
+
 		it('exports `createFrag`', () => {
 			expect(createFrag).to.be.a('function');
 		});
@@ -50,7 +55,7 @@ describe('dom-lib', () => {
 		});
 	});
 
-	describe('elm utils', elmUtilsSpec);
+	describe('element utils', elmUtilsSpec);
 	describe('createElm()', createElmSpec);
 	describe('createFrag()', createFragSpec);
 	describe('selectElm()', selectElmSpec);

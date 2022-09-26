@@ -8,3 +8,9 @@ export function setElmStyle (elm: HTMLElement, style: StandardObject) {
 		elm.style[cssKey] = cssValue;
 	});
 }
+
+export function setElmData (elm: HTMLElement, data: StandardObject) {
+	forIn(data, (dataKey, dataValue) => {
+		elm.dataset[dataKey] = dataValue as string;
+	});
+}

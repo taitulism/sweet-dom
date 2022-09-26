@@ -1,6 +1,6 @@
 import * as jsdom from 'jsdom';
 import {expect} from 'chai';
-import {setElmStyle} from '../src';
+import {setElmStyle, setElmData} from '../src';
 import {glb, setWinDoc} from './utils';
 
 export const elmUtilsSpec = () => {
@@ -23,6 +23,16 @@ export const elmUtilsSpec = () => {
 			expect(elm.style.color).to.equal('');
 			setElmStyle(elm, {color: 'red'});
 			expect(elm.style.color).to.equal('red');
+		});
+	});
+
+	describe('setElmData(elm, dataObj)', () => {
+		it('sets data attributes on an element', () => {
+			const elm = document.createElement('div');
+
+			expect(elm.dataset.some).to.equal(undefined);
+			setElmData(elm, {some: 'thing'});
+			expect(elm.dataset.some).to.equal('thing');
 		});
 	});
 };
