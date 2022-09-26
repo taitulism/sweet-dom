@@ -1,6 +1,6 @@
 import * as jsdom from 'jsdom';
 import {expect} from 'chai';
-import {setElmAttributes, setElmStyle, setElmData, setElmContent} from '../src';
+import {setAttributes, setStyle, setData, setContent} from '../src';
 import {glb, setWinDoc} from './utils';
 
 export const elmUtilsSpec = () => {
@@ -16,46 +16,46 @@ export const elmUtilsSpec = () => {
 		glb.document = undefined;
 	});
 
-	describe('setElmAttributes(elm, attrs)', () => {
+	describe('setAttributes(elm, attrs)', () => {
 		it('sets attributes on an element', () => {
 			const elm = document.createElement('input');
 
 			expect(elm.getAttribute('type')).to.equal(null);
 			expect(elm.getAttribute('name')).to.equal(null);
 
-			setElmAttributes(elm, {type: 'number', name: 'age'});
+			setAttributes(elm, {type: 'number', name: 'age'});
 
 			expect(elm.getAttribute('type')).to.equal('number');
 			expect(elm.getAttribute('name')).to.equal('age');
 		});
 	});
 
-	describe('setElmStyle(elm, styleObj)', () => {
+	describe('setStyle(elm, styleObj)', () => {
 		it('sets inline style on an element', () => {
 			const elm = document.createElement('div');
 
 			expect(elm.style.color).to.equal('');
-			setElmStyle(elm, {color: 'red'});
+			setStyle(elm, {color: 'red'});
 			expect(elm.style.color).to.equal('red');
 		});
 	});
 
-	describe('setElmData(elm, dataObj)', () => {
+	describe('setData(elm, dataObj)', () => {
 		it('sets data attributes on an element', () => {
 			const elm = document.createElement('div');
 
 			expect(elm.dataset.some).to.equal(undefined);
-			setElmData(elm, {some: 'thing'});
+			setData(elm, {some: 'thing'});
 			expect(elm.dataset.some).to.equal('thing');
 		});
 	});
 
-	describe('setElmContent(elm, contents)', () => {
+	describe('setContent(elm, contents)', () => {
 		it('appends text to an element', () => {
 			const elm = document.createElement('div');
 			const text = 'hello world';
 
-			setElmContent(elm, text);
+			setContent(elm, text);
 			expect(elm.textContent).to.equal(text);
 		});
 
@@ -63,7 +63,7 @@ export const elmUtilsSpec = () => {
 			const parent = document.createElement('div');
 			const child = document.createElement('div');
 
-			setElmContent(parent, child);
+			setContent(parent, child);
 			expect(parent.children[0]).to.be.a('HTMLDivElement');
 		});
 
@@ -74,7 +74,7 @@ export const elmUtilsSpec = () => {
 			const elmChild3 = document.createElement('div');
 			const textChild4 = 'world';
 
-			setElmContent(parent, [elmChild1, textChild2, elmChild3, textChild4]);
+			setContent(parent, [elmChild1, textChild2, elmChild3, textChild4]);
 
 			expect(parent.childNodes[0]).to.be.a('HTMLDivElement');
 			expect(parent.childNodes[1]).to.be.a('Text');

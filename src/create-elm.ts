@@ -1,5 +1,4 @@
-import {setElmStyle, setElmData, setElmContent, setElmAttributes} from './elm-utils';
-import {forIn} from './for-in';
+import {setStyle, setData, setContent, setAttributes} from './elm-utils';
 import type {
 	ElementAttributes,
 	ElementContents,
@@ -26,14 +25,14 @@ export function createElm (
 
 	if (attrs) {
 		if (isContent(attrs)) {
-			setElmContent(elm, attrs as ElementContents);
+			setContent(elm, attrs as ElementContents);
 		}
 		else {
 			setAllElmAttributes(elm, attrs as ElementAttributes);
 		}
 	}
 
-	if (content) setElmContent(elm, content);
+	if (content) setContent(elm, content);
 
 	return elm;
 }
@@ -59,14 +58,14 @@ function parseElmSelector (elmStr: string): ElementSelector {
 
 function setAllElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
 	if (attrs.style) {
-		setElmStyle(elm, attrs.style as StandardObject);
+		setStyle(elm, attrs.style as StandardObject);
 		delete attrs.style;
 	}
 
 	if (attrs.data) {
-		setElmData(elm, attrs.data as StandardObject);
+		setData(elm, attrs.data as StandardObject);
 		delete attrs.data;
 	}
 
-	setElmAttributes(elm, attrs as StandardObject);
+	setAttributes(elm, attrs as StandardObject);
 }
