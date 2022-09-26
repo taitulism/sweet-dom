@@ -1,3 +1,4 @@
+import {setElmStyle} from './elm-utils';
 import {forIn} from './for-in';
 import type {
 	ElementAttributes,
@@ -71,14 +72,6 @@ function setElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
 		else {
 			elm.setAttribute(key as string, value as string);
 		}
-	});
-}
-
-// TODO: CSSStyleDeclaration
-function setElmStyle (elm: HTMLElement, style: StandardObject) {
-	forIn(style, (cssKey, cssValue) => {
-		// @ts-ignore
-		elm.style[cssKey] = cssValue;
 	});
 }
 
