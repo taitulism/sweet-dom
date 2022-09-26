@@ -1,17 +1,19 @@
 import {setStyle, setData, setContent, setAttributes} from './elm-utils';
 import type {
-	ElementAttributes,
+	AllElementAttributes,
+	AttributesObj,
+	DataObj,
 	ElementContents,
 	ElementSelector,
 	HtmlTagName,
-	StandardObject,
+	StyleObj,
 } from './types';
 
 // TODO: Types. All over (include forIn)
 
 export function createElm (
 	elmStr: string,
-	attrs?: ElementAttributes | ElementContents,
+	attrs?: AllElementAttributes | ElementContents,
 	content?: ElementContents,
 ): HTMLElement {
 	const {tag, id, classnames} = parseElmSelector(elmStr);
@@ -28,7 +30,7 @@ export function createElm (
 			setContent(elm, attrs as ElementContents);
 		}
 		else {
-			setAllElmAttributes(elm, attrs as ElementAttributes);
+			setAllElmAttributes(elm, attrs as AllElementAttributes);
 		}
 	}
 
@@ -37,7 +39,7 @@ export function createElm (
 	return elm;
 }
 
-function isContent (attrsOrContent: ElementAttributes | ElementContents) {
+function isContent (attrsOrContent: AllElementAttributes | ElementContents) {
 	return (
 		typeof attrsOrContent === 'string'
 		|| attrsOrContent instanceof window.HTMLElement
@@ -56,16 +58,16 @@ function parseElmSelector (elmStr: string): ElementSelector {
 	};
 }
 
-function setAllElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
+function setAllElmAttributes (elm: HTMLElement, attrs: AllElementAttributes) {
 	if (attrs.style) {
-		setStyle(elm, attrs.style as StandardObject);
+		setStyle(elm, attrs.style as StyleObj);
 		delete attrs.style;
 	}
 
 	if (attrs.data) {
-		setData(elm, attrs.data as StandardObject);
+		setData(elm, attrs.data as DataObj);
 		delete attrs.data;
 	}
 
-	setAttributes(elm, attrs as StandardObject);
+	setAttributes(elm, attrs as AttributesObj);
 }

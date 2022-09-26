@@ -26,15 +26,10 @@ createDivs(HOW_MANY_DIVS); // prep once
 
 export function startBenchmark () {
 	const startTime = performance.now();
-	let qwes: Array<HTMLElement> | NodeList;
 
 	loop(TEST_LOOP, () => {
-		qwes = grabAllQwes();
+		grabAllQwes();
 	});
 
 	console.log(performance.now() - startTime);
-
-	for (const elm of qwes!) {
-		elm && 1 + 1;
-	}
 }

@@ -1,23 +1,22 @@
-import type {ElementContents, StandardObject} from './types';
+import type {AttributesObj, DataObj, ElementContents, StyleObj} from './types';
 import {forIn} from './for-in';
 
-export function setAttributes (elm: HTMLElement, attrs: StandardObject) {
+export function setAttributes (elm: HTMLElement, attrs: AttributesObj) {
 	forIn(attrs, (key, value) => {
-		elm.setAttribute(key as string, value as string);
+		elm.setAttribute(key, value);
 	});
 }
 
-// TODO: CSSStyleDeclaration
-export function setStyle (elm: HTMLElement, style: StandardObject) {
+export function setStyle (elm: HTMLElement, style: StyleObj) {
 	forIn(style, (cssKey, cssValue) => {
 		// @ts-ignore
 		elm.style[cssKey] = cssValue;
 	});
 }
 
-export function setData (elm: HTMLElement, data: StandardObject) {
+export function setData (elm: HTMLElement, data: DataObj) {
 	forIn(data, (dataKey, dataValue) => {
-		elm.dataset[dataKey] = dataValue as string;
+		elm.dataset[dataKey] = dataValue;
 	});
 }
 

@@ -99,7 +99,7 @@ export const createElmSpec = () => {
 		const elm = createElm('div', {
 			data: {
 				name: 'john',
-				age: 30,
+				age: '30',
 			},
 		});
 

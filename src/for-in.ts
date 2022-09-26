@@ -1,8 +1,10 @@
-export interface IterCallback <Obj> {
-	(key: keyof Obj, value: unknown): void;
+import {UnknownObject} from './types';
+
+export interface IterCallback <K = string, V = unknown> {
+	(key: K, value: V): void;
 }
 
-export function forIn <Obj> (obj: Obj, fn: IterCallback<Obj>) {
+export function forIn <T = UnknownObject> (obj: T, fn: IterCallback<keyof T, T[keyof T]>) {
 	for (const key in obj) {
 		if (Object.hasOwnProperty.call(obj, key)) {
 			fn(key, obj[key]);
