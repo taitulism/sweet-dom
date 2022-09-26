@@ -1,4 +1,4 @@
-import type {StandardObject} from './types';
+import type {ElementContents, StandardObject} from './types';
 import {forIn} from './for-in';
 
 // TODO: CSSStyleDeclaration
@@ -13,4 +13,13 @@ export function setElmData (elm: HTMLElement, data: StandardObject) {
 	forIn(data, (dataKey, dataValue) => {
 		elm.dataset[dataKey] = dataValue as string;
 	});
+}
+
+export function setElmContent (elm: HTMLElement, content: ElementContents) {
+	if (Array.isArray(content)) {
+		elm.append(...content);
+	}
+	else {
+		elm.append(content);
+	}
 }

@@ -1,8 +1,8 @@
-import {setElmStyle, setElmData} from './elm-utils';
+import {setElmStyle, setElmData, setElmContent} from './elm-utils';
 import {forIn} from './for-in';
 import type {
 	ElementAttributes,
-	ElementContent,
+	ElementContents,
 	ElementSelector,
 	HtmlTagName,
 	StandardObject,
@@ -12,8 +12,8 @@ import type {
 
 export function createElm (
 	elmStr: string,
-	attrs?: ElementAttributes | ElementContent,
-	content?: ElementContent,
+	attrs?: ElementAttributes | ElementContents,
+	content?: ElementContents,
 ): HTMLElement {
 	const {tag, id, classnames} = parseElmSelector(elmStr);
 	const elm = document.createElement(tag);
@@ -26,7 +26,7 @@ export function createElm (
 
 	if (attrs) {
 		if (isContent(attrs)) {
-			setElmContent(elm, attrs as ElementContent);
+			setElmContent(elm, attrs as ElementContents);
 		}
 		else {
 			setElmAttributes(elm, attrs as ElementAttributes);
@@ -38,7 +38,7 @@ export function createElm (
 	return elm;
 }
 
-function isContent (attrsOrContent: ElementAttributes | ElementContent) {
+function isContent (attrsOrContent: ElementAttributes | ElementContents) {
 	return (
 		typeof attrsOrContent === 'string'
 		|| attrsOrContent instanceof window.HTMLElement
@@ -73,21 +73,4 @@ function setElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
 			elm.setAttribute(key as string, value as string);
 		}
 	});
-}
-
-// TODO: reduce types: ElementContent and Content
-function setElmContent (elm: HTMLElement, content: ElementContent) {
-	// TODO: what textContent equals when contents are: [string, elm,  string]?
-	if (typeof content === 'string') {
-		elm.textContent = content;
-	}
-	else if (content instanceof window.HTMLElement) {
-		elm.appendChild(content);
-	}
-	else if (Array.isArray(content)) {
-		// TODO: string content inside an array doesn't support strings.
-		content.forEach((child) => {
-			elm.appendChild(child);
-		});
-	}
 }

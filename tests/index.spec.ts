@@ -9,6 +9,7 @@ import {
 	$, $$,
 	setElmStyle,
 	setElmData,
+	setElmContent,
 	createElm,
 	createFrag,
 	bindEvent,
@@ -36,6 +37,10 @@ describe('dom-lib', () => {
 
 		it('exports `setElmData`', () => {
 			expect(setElmData).to.be.a('function');
+		});
+
+		it('exports `setElmContent`', () => {
+			expect(setElmContent).to.be.a('function');
 		});
 
 		it('exports `createFrag`', () => {
