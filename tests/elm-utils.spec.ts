@@ -1,6 +1,6 @@
 import * as jsdom from 'jsdom';
 import {expect} from 'chai';
-import {setElmStyle, setElmData, setElmContent} from '../src';
+import {setElmAttributes, setElmStyle, setElmData, setElmContent} from '../src';
 import {glb, setWinDoc} from './utils';
 
 export const elmUtilsSpec = () => {
@@ -14,6 +14,20 @@ export const elmUtilsSpec = () => {
 		glb.window.close();
 		glb.window = undefined;
 		glb.document = undefined;
+	});
+
+	describe('setElmAttributes(elm, attrs)', () => {
+		it('sets attributes on an element', () => {
+			const elm = document.createElement('input');
+
+			expect(elm.getAttribute('type')).to.equal(null);
+			expect(elm.getAttribute('name')).to.equal(null);
+
+			setElmAttributes(elm, {type: 'number', name: 'age'});
+
+			expect(elm.getAttribute('type')).to.equal('number');
+			expect(elm.getAttribute('name')).to.equal('age');
+		});
 	});
 
 	describe('setElmStyle(elm, styleObj)', () => {

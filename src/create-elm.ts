@@ -1,4 +1,4 @@
-import {setElmStyle, setElmData, setElmContent} from './elm-utils';
+import {setElmStyle, setElmData, setElmContent, setElmAttributes} from './elm-utils';
 import {forIn} from './for-in';
 import type {
 	ElementAttributes,
@@ -29,7 +29,7 @@ export function createElm (
 			setElmContent(elm, attrs as ElementContents);
 		}
 		else {
-			setElmAttributes(elm, attrs as ElementAttributes);
+			setAllElmAttributes(elm, attrs as ElementAttributes);
 		}
 	}
 
@@ -57,20 +57,16 @@ function parseElmSelector (elmStr: string): ElementSelector {
 	};
 }
 
-function setElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
-	forIn(attrs, (key, value) => {
-		if (key === 'style') {
-			const style = value as StandardObject;
+function setAllElmAttributes (elm: HTMLElement, attrs: ElementAttributes) {
+	if (attrs.style) {
+		setElmStyle(elm, attrs.style as StandardObject);
+		delete attrs.style;
+	}
 
-			setElmStyle(elm, style);
-		}
-		else if (key === 'data') {
-			const data = value as StandardObject;
+	if (attrs.data) {
+		setElmData(elm, attrs.data as StandardObject);
+		delete attrs.data;
+	}
 
-			setElmData(elm, data);
-		}
-		else {
-			elm.setAttribute(key as string, value as string);
-		}
-	});
+	setElmAttributes(elm, attrs as StandardObject);
 }

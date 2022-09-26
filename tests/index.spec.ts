@@ -7,6 +7,7 @@ import {bindEventSpec} from './bind-events.spec';
 import {putElmSpec} from './put-elm.spec';
 import {
 	$, $$,
+	setElmAttributes,
 	setElmStyle,
 	setElmData,
 	setElmContent,
@@ -29,6 +30,10 @@ describe('dom-lib', () => {
 
 		it('exports `createElm`', () => {
 			expect(createElm).to.be.a('function');
+		});
+
+		it('exports `setElmAttributes`', () => {
+			expect(setElmAttributes).to.be.a('function');
 		});
 
 		it('exports `setElmStyle`', () => {
