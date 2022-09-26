@@ -9,11 +9,42 @@ import type {
 	StyleObj,
 } from './types';
 
-export function createElm (
+const isContent = (attrsOrContent: AllElementAttributes | ElementContents) => (
+	typeof attrsOrContent === 'string'
+		|| attrsOrContent instanceof window.HTMLElement
+		|| Array.isArray(attrsOrContent)
+);
+
+const parseElmSelector = (elmStr: string): ElementSelector => {
+	const [tagAndId, ...classnames] = elmStr.split('.');
+	const [tag, id] = tagAndId.split('#');
+
+	return {
+		tag: (tag || 'div') as HtmlTagName,
+		id: id || undefined,
+		classnames: classnames || undefined,
+	};
+};
+
+const setAllElmAttributes = (elm: HTMLElement, attrs: AllElementAttributes) => {
+	if (attrs.style) {
+		setStyle(elm, attrs.style as StyleObj);
+		delete attrs.style;
+	}
+
+	if (attrs.data) {
+		setData(elm, attrs.data as DataObj);
+		delete attrs.data;
+	}
+
+	setAttributes(elm, attrs as AttributesObj);
+};
+
+export const createElm = (
 	elmStr: string,
 	attrs?: AllElementAttributes | ElementContents,
 	content?: ElementContents,
-): HTMLElement {
+): HTMLElement => {
 	const {tag, id, classnames} = parseElmSelector(elmStr);
 	const elm = document.createElement(tag);
 
@@ -35,37 +66,4 @@ export function createElm (
 	if (content) setContent(elm, content);
 
 	return elm;
-}
-
-function isContent (attrsOrContent: AllElementAttributes | ElementContents) {
-	return (
-		typeof attrsOrContent === 'string'
-		|| attrsOrContent instanceof window.HTMLElement
-		|| Array.isArray(attrsOrContent)
-	);
-}
-
-function parseElmSelector (elmStr: string): ElementSelector {
-	const [tagAndId, ...classnames] = elmStr.split('.');
-	const [tag, id] = tagAndId.split('#');
-
-	return {
-		tag: (tag || 'div') as HtmlTagName,
-		id: id || undefined,
-		classnames: classnames || undefined,
-	};
-}
-
-function setAllElmAttributes (elm: HTMLElement, attrs: AllElementAttributes) {
-	if (attrs.style) {
-		setStyle(elm, attrs.style as StyleObj);
-		delete attrs.style;
-	}
-
-	if (attrs.data) {
-		setData(elm, attrs.data as DataObj);
-		delete attrs.data;
-	}
-
-	setAttributes(elm, attrs as AttributesObj);
-}
+};

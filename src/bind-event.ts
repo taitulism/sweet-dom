@@ -1,31 +1,26 @@
 const ONCE = {once: true};
 
-// export type EventHandler = (ev: Event) => void;
-// export type EventListenerTarget = HTMLElement | Document | Window;
-
-export function bindEvent (
+export const bindEvent = (
 	target: EventTarget,
 	eventName: string,
 	callback: EventListener,
 	options?: boolean | AddEventListenerOptions,
-) {
-	target.addEventListener(eventName, callback as EventListener, options);
+) => {
+	target.addEventListener(eventName, callback, options);
 
-	return function unbindEvent () {
-		target.removeEventListener(eventName, callback as EventListener, options);
-	};
-}
+	return () => target.removeEventListener(eventName, callback, options);
+};
 
-export function bindEventOnce (
+export const bindEventOnce = (
 	target: EventTarget,
 	eventName: string,
 	callback: EventListener,
 	options?: boolean | AddEventListenerOptions,
-) {
+) => {
 	const opts: AddEventListenerOptions = typeof options === 'boolean'
 		? {...ONCE, capture: options}
 		: options ? {...options, ...ONCE} : ONCE
 	;
 
 	return bindEvent(target, eventName, callback, opts);
-}
+};

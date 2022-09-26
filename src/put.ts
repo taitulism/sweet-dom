@@ -4,9 +4,7 @@ const getElm = (elmOrSelector: HTMLElement | string): HTMLElement | null => (
 		: elmOrSelector
 );
 
-export function put (elm: HTMLElement | DocumentFragment) {
-	return new Put(elm);
-}
+export const put = (elm: HTMLElement | DocumentFragment) => new Put(elm);
 
 class Put {
 	private elm: HTMLElement | DocumentFragment;
