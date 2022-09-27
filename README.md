@@ -9,6 +9,7 @@ A thin DOM wrapper to make common vanilla operations a bit more convenient.
 * [Element Selection](#element-selection)
 * [Event Binding](#event-binding)
 * [Element Creation](#element-creation)
+* [Element Utils](#element-utils)
 * [DOM Manipulation](#dom-manipulation)
 
 
@@ -44,9 +45,8 @@ unBindClick();
 
 Element Creation
 ----------------
-* **`createElm()`**
-* **`createFrag()`**
-### Return: `HTMLElement` or `DocumentFragment`, respectively.
+* **`createElm()`** - Return `HTMLElement`
+* **`createFrag()`** - Return `DocumentFragment`
 
 ### **createElm(selector, attributes, content)**
 
@@ -106,6 +106,95 @@ Example:
 ```js
 createFrag(elm1, elm2, 'some string', elm3)
 ```
+
+
+Element Utils
+-------------
+
+* [`setStyle()`](#setstyleelm-styleobject)
+* [`setAttributes()`](#setattributeselm-attrobject)
+* [`setData()`](#setdataelm-dataobject)
+* [`setContent()`](#setcontentelm-contents)
+
+### `setStyle(elm, styleObject)`
+Sets an element inline style.
+
+Example:
+```js
+setStyle(divElm, {
+	height: '75px',
+	width: '200px',
+});
+
+/* 
+  <div style="height: 75px; width: 200px;" />
+*/
+```
+
+
+
+### `setAttributes(elm, attrObject)`
+Sets multiple attributes on an element.
+
+Example:
+```js
+setAttributes(inputElm, {
+	type: 'number',
+	name: 'age',
+});
+
+/* 
+  <input type="number" name="age" />
+*/
+```
+
+
+
+### `setData(elm, dataObject)`
+Sets multiple data-attributes on an element.
+
+Example:
+```js
+setData(divElm, {
+	hello: 'world',
+	something: 'else',
+});
+
+/* 
+  <div data-hello="world" data-something="else" />
+*/
+```
+
+
+
+### `setContent(elm, contents)`
+Appends child/children to an element. Accepts elements, nodes, strings.
+
+Example:
+```js
+// single
+setContent(parentElm, childElm);
+/* 
+  <parentElm>
+    <childElm>
+  </parentElm>
+*/
+
+// array
+setContent(parentElm, [child1, 'child 2', child3]);
+/* 
+  <parentElm>
+    <child1>
+    child 2
+    <child3>
+  </parentElm>
+*/
+```
+
+
+
+
+
 
 
 DOM Manipulation
