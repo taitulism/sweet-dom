@@ -1,19 +1,19 @@
 {
-   "name": "dom-lib",
+   "name": "sweet-dom",
    "description": "Doing stuff.",
    "version": "0.0.0",
    "license": "MIT",
    "private": true,
    "main": "./src/index.ts",
-   "browser": "./dist/browser/dom-lib.min.js",
-   "module": "./dist/esm/dom-lib.esm.js",
-   "types": "./dist/esm/dom-lib.esm.d.ts",
+   "browser": "./dist/browser/sweet-dom.min.js",
+   "module": "./dist/esm/sweet-dom.esm.js",
+   "types": "./dist/esm/sweet-dom.esm.d.ts",
    "files": [
       "dist"
    ],
    "author": "Taitu Lizenbaum <taitu.dev@gmail.com>",
-   "homepage": "https://github.com/taitulism/dom-lib#readme",
-   "repository": "github:taitulism/dom-lib",
+   "homepage": "https://github.com/taitulism/sweet-dom#readme",
+   "repository": "github:taitulism/sweet-dom",
    "scripts": {
       "dev": "npm run test:watch",
       "play": "rollup --config rollup.dev.config.js --watch",

@@ -18,7 +18,7 @@ import {
 	put,
 } from '../src';
 
-describe('dom-lib', () => {
+describe('sweet-dom', () => {
 	describe('exports', () => {
 		it('exports `$`', () => {
 			expect($).to.be.a('function');

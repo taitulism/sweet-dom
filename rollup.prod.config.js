@@ -17,7 +17,7 @@ const esm = {
 	output: {
 		dir: './dist/esm',
 		format: 'es',
-		entryFileNames:'dom-lib.esm.js',
+		entryFileNames:'sweet-dom.esm.js',
 	},
 };
 
@@ -36,7 +36,7 @@ const browserMini = {
 	output: {
 		file: pkg.browser,
 		format: 'iife',
-		name: 'domLib',
+		name: 'sweetDom',
 	},
 };
 
