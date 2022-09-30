@@ -29,11 +29,9 @@ export const insertElmSpec = () => {
 		glb.document = undefined;
 	});
 
-	it('returns a `Insert` instance', () => {
+	it('returns a an object with `.before()` and `.after()` methods', () => {
 		const insertElm = insert(elm);
-		const ctor = Object.getPrototypeOf(insertElm).constructor;
 
-		expect(ctor.name).to.equal('Insert');
 		expect(insertElm.before).to.be.a('function');
 		expect(insertElm.after).to.be.a('function');
 	});
