@@ -36,7 +36,7 @@ export const putElmSpec = () => {
 		expect(ctor.name).to.equal('Put');
 		expect(putElm.before).to.be.a('function');
 		expect(putElm.after).to.be.a('function');
-		expect(putElm.inside).to.be.a('function');
+		// expect(putElm.inside).to.be.a('function'); // archived
 	});
 
 	it('accepts a fragment', () => {
@@ -85,50 +85,51 @@ export const putElmSpec = () => {
 			expect(childC.nextSibling).to.deep.equal(elm);
 		});
 	});
+	/* -Archived-
+		describe('.inside()', () => {
+			let parent: HTMLElement;
 
-	describe('.inside()', () => {
-		let parent: HTMLElement;
+			beforeEach(() => {
+				parent = document.getElementById('parent')!;
+			});
 
-		beforeEach(() => {
-			parent = document.getElementById('parent')!;
+			it('appends to element', () => {
+				expect(parent.childElementCount).to.equal(3);
+				put(elm).inside(parent);
+				expect(parent.childElementCount).to.equal(4);
+			});
+
+			it('appends to selector', () => {
+				expect(parent.childElementCount).to.equal(3);
+				put(elm).inside('#parent');
+				expect(parent.childElementCount).to.equal(4);
+			});
+
+			it('appends last by default', () => {
+				expect(parent.lastElementChild!.id).to.equal('child-C');
+				put(elm).inside(parent);
+				expect(parent.lastElementChild!.id).to.equal('put-me');
+			});
+
+			it('appends at given index', () => {
+				expect(parent.children).to.have.lengthOf(3);
+				expect(childA.nextElementSibling!.id).to.equal('child-B');
+
+				put(elm).inside(parent, 1);
+
+				expect(childA.nextElementSibling!.id).to.equal('put-me');
+				expect(parent.children).to.have.lengthOf(4);
+			});
+
+			it('appends at given index - with text nodes', () => {
+				expect(parent.childNodes.length).to.equal(6);
+				expect(parent.childNodes[4].textContent).to.equal('\n\t');
+
+				put(elm).inside(parent, 4, true);
+
+				expect(parent.childNodes[4].textContent).to.equal('put');
+				expect(parent.childNodes.length).to.equal(7);
+			});
 		});
-
-		it('appends to element', () => {
-			expect(parent.childElementCount).to.equal(3);
-			put(elm).inside(parent);
-			expect(parent.childElementCount).to.equal(4);
-		});
-
-		it('appends to selector', () => {
-			expect(parent.childElementCount).to.equal(3);
-			put(elm).inside('#parent');
-			expect(parent.childElementCount).to.equal(4);
-		});
-
-		it('appends last by default', () => {
-			expect(parent.lastElementChild!.id).to.equal('child-C');
-			put(elm).inside(parent);
-			expect(parent.lastElementChild!.id).to.equal('put-me');
-		});
-
-		it('appends at given index', () => {
-			expect(parent.children).to.have.lengthOf(3);
-			expect(childA.nextElementSibling!.id).to.equal('child-B');
-
-			put(elm).inside(parent, 1);
-
-			expect(childA.nextElementSibling!.id).to.equal('put-me');
-			expect(parent.children).to.have.lengthOf(4);
-		});
-
-		it('appends at given index - with text nodes', () => {
-			expect(parent.childNodes.length).to.equal(6);
-			expect(parent.childNodes[4].textContent).to.equal('\n\t');
-
-			put(elm).inside(parent, 4, true);
-
-			expect(parent.childNodes[4].textContent).to.equal('put');
-			expect(parent.childNodes.length).to.equal(7);
-		});
-	});
+	*/
 };

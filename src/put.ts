@@ -24,22 +24,23 @@ class Put {
 
 		otherElm?.parentNode?.insertBefore(this.elm, otherElm.nextSibling);
 	}
+	/* -Archived-
+		inside (
+			parentOrSelector: HTMLElement | string,
+			index: number = -1,
+			withNodes: boolean = false,
+		) {
+			const parent = getElm(parentOrSelector);
 
-	inside (
-		parentOrSelector: HTMLElement | string,
-		index: number = -1,
-		withNodes: boolean = false,
-	) {
-		const parent = getElm(parentOrSelector);
+			if (!parent) return;
 
-		if (!parent) return;
+			const children = withNodes ? parent.childNodes : parent.children;
 
-		const children = withNodes ? parent.childNodes : parent.children;
+			index = index >= 0 ? index : children.length + 1 + index;
 
-		index = index >= 0 ? index : children.length + 1 + index;
+			const otherElm = children[index] || null;
 
-		const otherElm = children[index] || null;
-
-		parent.insertBefore(this.elm, otherElm);
-	}
+			parent.insertBefore(this.elm, otherElm);
+		}
+	*/
 }
