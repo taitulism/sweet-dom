@@ -1,7 +1,4 @@
-import {$$, createElm} from '../src';
-
-const HOW_MANY_DIVS = 100;
-const TEST_LOOP = 2;
+// import {$, createElm, insert} from '../src';
 
 function loop (num: number, cb: (i: number) => void) {
 	for (let index = 0; index < num; index++) {
@@ -9,26 +6,21 @@ function loop (num: number, cb: (i: number) => void) {
 	}
 }
 
-function createDivs (howMany: number) {
-	loop(howMany, () => {
-		document.body.appendChild(createElm('div.qwe'));
-	});
+function prepare () {
+
 }
 
-function grabAllQwes () {
-	// return document.getElementsByClassName('qwe');
-	// return document.querySelectorAll('.qwe');
-	// return $class('qwe');
-	return $$('.qwe');
-}
+function run () {
 
-createDivs(HOW_MANY_DIVS); // prep once
+}
 
 export function startBenchmark () {
+	prepare();
+
 	const startTime = performance.now();
 
-	loop(TEST_LOOP, () => {
-		grabAllQwes();
+	loop(10_000, () => {
+		run();
 	});
 
 	console.log(performance.now() - startTime);

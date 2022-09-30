@@ -1,19 +1,11 @@
 import {createElm, bindEvent} from '../src';
 import {startBenchmark} from './benchmark';
 
-const style = {
-	margin: '50px',
-	display: 'inline-block',
-	textDecoration: 'underline',
-	color: 'blue',
-	cursor: 'pointer',
-};
-
-const link = createElm('span#link', {style, href: '#'}, 'Click');
+const link = createElm('a#link', {href: '#'}, 'Click');
 
 bindEvent(link, 'click', () => {
 	alert('ok');
 	// startBenchmark();
 });
 
-document.body.appendChild(link);
+document.body.prepend(link);
