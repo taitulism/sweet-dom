@@ -4,7 +4,7 @@ import {elmUtilsSpec} from './elm-utils.spec';
 import {createFragSpec} from './create-frag.spec';
 import {selectElmSpec} from './select-elm.spec';
 import {bindEventSpec} from './bind-events.spec';
-import {putElmSpec} from './put-elm.spec';
+import {insertElmSpec} from './insert-elm.spec';
 import {
 	$, $$,
 	setAttributes,
@@ -15,7 +15,7 @@ import {
 	createFrag,
 	bindEvent,
 	bindEventOnce,
-	put,
+	insert,
 } from '../src';
 
 describe('sweet-dom', () => {
@@ -60,15 +60,15 @@ describe('sweet-dom', () => {
 			expect(bindEventOnce).to.be.a('function');
 		});
 
-		it('exports `put`', () => {
-			expect(put).to.be.a('function');
+		it('exports `insert`', () => {
+			expect(insert).to.be.a('function');
 		});
 	});
 
 	describe('element utils', elmUtilsSpec);
 	describe('createElm()', createElmSpec);
 	describe('createFrag()', createFragSpec);
-	describe('selectElm()', selectElmSpec);
+	describe('element selction', selectElmSpec);
 	describe('bindEvent()', bindEventSpec);
-	describe('put()', putElmSpec);
+	describe('insert()', insertElmSpec);
 });

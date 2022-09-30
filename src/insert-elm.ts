@@ -4,24 +4,20 @@ const getElm = (elmOrSelector: HTMLElement | string): HTMLElement | null => (
 		: elmOrSelector
 );
 
-export const put = (elm: HTMLElement | DocumentFragment) => new Put(elm);
+export const insert = (elm: HTMLElement | DocumentFragment) => new Insert(elm);
 
-class Put {
-	private elm: HTMLElement | DocumentFragment;
-
-	constructor (elm: HTMLElement | DocumentFragment) {
-		this.elm = elm;
-	}
+class Insert {
+	constructor (private elm: HTMLElement | DocumentFragment) {}
 
 	before (otherElmOrSelector: HTMLElement | string) {
 		const otherElm = getElm(otherElmOrSelector);
 
-		otherElm?.parentNode?.insertBefore(this.elm, otherElm);
+		otherElm?.parentElement?.insertBefore(this.elm, otherElm);
 	}
 
 	after (otherElmOrSelector: HTMLElement | string) {
 		const otherElm = getElm(otherElmOrSelector);
 
-		otherElm?.parentNode?.insertBefore(this.elm, otherElm.nextSibling);
+		otherElm?.parentElement?.insertBefore(this.elm, otherElm.nextSibling);
 	}
 }
