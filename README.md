@@ -7,6 +7,8 @@ sweet-dom
 A minimalistic DOM library.
 
 ### What's in the box?
+> Only ~1.1 KB minified, not gZipped. Peanuts.
+
 * [Element Selection](#element-selection)
 	* `$()`
 	* `$$()`
@@ -25,28 +27,16 @@ A minimalistic DOM library.
 
 &nbsp;
 
-~1.1 KB minified, not gZipped. Peanuts.
-
 ----------------------------------------
-## Install
+## Installation
 ```sh
 $ npm install --save sweet-dom
 ```
 
-<details>
-	<!-- TODO: keep up-to-date -->
-	<summary>or click here, grab the iife and drop it like it's hot.</summary>
-&nbsp;
+or [grab the iife](https://raw.githubusercontent.com/taitulism/sweet-dom/develop/dist/browser/sweet-dom.min.js) and drop it like it's hot.
 
-Last update: **Oct 1, 2022**
 
-```js
-var sweetDom=function(e){"use strict";const t={once:!0},n=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),r=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=n,e.bindEventOnce=(e,r,s,o)=>{const c="boolean"==typeof o?{...t,capture:o}:o?{...o,...t}:t;return n(e,r,s,c)},e.createElm=(e,...t)=>{const{tag:n,id:r,classnames:s}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),o=document.createElement(n);return r&&(o.id=r),s?.length&&o.classList.add(...s),t.length&&o.append(...t),o},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=r(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=r(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=(e,t)=>{for(const[n,r]of Object.entries(t))e.setAttribute(n,r)},e.setStyle=(e,t)=>{Object.assign(e.style,t)},Object.defineProperty(e,"__esModule",{value:!0}),e}({});
-```
-</details>
-
-&nbsp;
-### Use:
+## Usage
 ```js
 import {createElm, bindEvent} from 'sweet-dom';
 ```
@@ -54,6 +44,8 @@ import {createElm, bindEvent} from 'sweet-dom';
 &nbsp;
 
 -------------------------------------------------------
+
+# API
 
 Element Selection
 -----------------
