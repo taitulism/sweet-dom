@@ -8,8 +8,6 @@ export type UnknownObject = Obj<string, unknown>
 
 export type Content = Node | string
 export type ElementContents = Content | Array<Content>
-
-export type StyleObj = Dictionary      // TODO:ts Partial<CSSStyleDeclaration>
 export type AttributesObj = Dictionary // TODO:ts {[K in keyof Attr]: string}
 
 export type HtmlTagName = keyof HTMLElementTagNameMap
