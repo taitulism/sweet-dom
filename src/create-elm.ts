@@ -1,6 +1,5 @@
-import {setContent} from './elm-utils';
 import type {
-	ElementContents,
+	Content,
 	ElementSelector,
 	HtmlTagName,
 } from './types';
@@ -18,7 +17,7 @@ const parseElmSelector = (elmStr: string): ElementSelector => {
 
 export const createElm = (
 	elmStr: string,
-	content?: ElementContents,
+	...contents: Array<Content>
 ): HTMLElement => {
 	const {tag, id, classnames} = parseElmSelector(elmStr);
 	const elm = document.createElement(tag);
@@ -29,7 +28,7 @@ export const createElm = (
 		elm.classList.add(...classnames);
 	}
 
-	if (content) setContent(elm, content);
+	contents.length && elm.append(...contents);
 
 	return elm;
 };

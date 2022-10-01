@@ -9,7 +9,6 @@ import {
 	$, $$,
 	setAttributes,
 	setStyle,
-	setContent,
 	createElm,
 	createFrag,
 	bindEvent,
@@ -37,10 +36,6 @@ describe('sweet-dom', () => {
 
 		it('exports `setStyle`', () => {
 			expect(setStyle).to.be.a('function');
-		});
-
-		it('exports `setContent`', () => {
-			expect(setContent).to.be.a('function');
 		});
 
 		it('exports `createFrag`', () => {

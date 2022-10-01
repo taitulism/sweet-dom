@@ -16,7 +16,6 @@ A minimalistic DOM library.
 * [Element Utils](#element-utils)
 	* [`setStyle()`](#setstyleelm-styleobject)
 	* [`setAttributes()`](#setattributeselm-attrobject)
-	* [`setContent()`](#setcontentelm-contents)
 * [Element Insertion](#element-insertion)
 	* `insert().before()`
 	* `insert().after()`
@@ -26,7 +25,7 @@ A minimalistic DOM library.
 
 &nbsp;
 
-~1.15 KB minified, not gZipped. Peanuts.
+~1.1 KB minified, not gZipped. Peanuts.
 
 ----------------------------------------
 ## Install
@@ -42,7 +41,7 @@ $ npm install --save sweet-dom
 Last update: **Oct 1, 2022**
 
 ```js
-var sweetDom=function(e){"use strict";const t=(e,t)=>{Array.isArray(t)?e.append(...t):e.append(t)},n={once:!0},r=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),s=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=r,e.bindEventOnce=(e,t,s,o)=>{const c="boolean"==typeof o?{...n,capture:o}:o?{...o,...n}:n;return r(e,t,s,c)},e.createElm=(e,n)=>{const{tag:r,id:s,classnames:o}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),c=document.createElement(r);return s&&(c.id=s),o?.length&&c.classList.add(...o),n&&t(c,n),c},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=s(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=s(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=(e,t)=>{for(const[n,r]of Object.entries(t))e.setAttribute(n,r)},e.setContent=t,e.setStyle=(e,t)=>{Object.assign(e.style,t)},Object.defineProperty(e,"__esModule",{value:!0}),e}({});
+var sweetDom=function(e){"use strict";const t={once:!0},n=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),r=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=n,e.bindEventOnce=(e,r,s,o)=>{const c="boolean"==typeof o?{...t,capture:o}:o?{...o,...t}:t;return n(e,r,s,c)},e.createElm=(e,...t)=>{const{tag:n,id:r,classnames:s}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),o=document.createElement(n);return r&&(o.id=r),s?.length&&o.classList.add(...s),t.length&&o.append(...t),o},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=r(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=r(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=(e,t)=>{for(const[n,r]of Object.entries(t))e.setAttribute(n,r)},e.setStyle=(e,t)=>{Object.assign(e.style,t)},Object.defineProperty(e,"__esModule",{value:!0}),e}({});
 ```
 </details>
 
@@ -73,7 +72,7 @@ Element Creation
 * [`createElm()`](#createelmselector-content)
 * [`createFrag()`](#createfragcontents)
 
-### **createElm(selector, content)**
+### **createElm(selector, content1, content2, ...contentN)**
 Returns `HTMLElement`
 #### **`selector`** - Required
 A string descriptor of an element. Supports a tag-name, an ID and classnames of the following format:
@@ -91,8 +90,8 @@ createElm(selector)
 ```
 
 
-#### **`contents`**
-The created element's child elements, nodes or text contents. Could be either a single child or an array of children.
+#### **`...contents`** - Optional
+The created element's children, spread as arguments. Accepts HTML elements, nodes and strings.
 
 ```js
 // single
@@ -104,10 +103,12 @@ createElm('button', contents)
 
 ```
 ```js
-// array
-const contents = [iconElm, 'Click']
+// multiple
+createElm('button', iconElm, 'Click')
 
-createElm('button', contents)
+// spread arrays
+const contents = [iconElm, 'Click']
+createElm('button', ...contents)
 
 //<button> ☻ Click</button>
 ```
@@ -118,7 +119,7 @@ createElm('button', contents)
 Returns `DocumentFragment`
 
 #### **`...contents`**
-Accepts strings, nodes and HTML elements.
+Accepts HTML elements, nodes and strings.
 
 Example:
 ```js
@@ -131,7 +132,6 @@ Element Utils
 -------------
 * [`setStyle()`](#setstyleelm-styleobject)
 * [`setAttributes()`](#setattributeselm-attrobject)
-* [`setContent()`](#setcontentelm-contents)
 
 ### `setStyle(elm, styleObject)`
 Sets an element inline style.
@@ -160,32 +160,6 @@ setAttributes(inputElm, {
 
 /* 
   <input type="number" name="age" />
-*/
-```
-
-
-
-### `setContent(elm, contents)`
-Appends child/children to an element. Accepts elements, nodes, strings.
-
-```js
-// single
-setContent(parentElm, childElm);
-/* 
-  <parentElm>
-    <childElm>
-  </parentElm>
-*/
-```
-```js
-// array
-setContent(parentElm, [child1, 'child 2', child3]);
-/* 
-  <parentElm>
-    <child1>
-    child 2
-    <child3>
-  </parentElm>
 */
 ```
 
@@ -277,7 +251,7 @@ When you select a couple of elements the difference is like less than a millisec
 
 Justification: Element Creation
 -------------------------------
-This is the bigger part in the library with the most value. A high-level function to not just create but also design an HTML element. Covers the element tagname, id, classnames, regular and data attributes, inline style and the element's children. Why? because it never ends with just creating an element. We always adding some contents and usually give it a classname or some styling.  
+This is the bigger part in the library with the most value. A high-level function to not just create but also design an HTML element. Covers the element tagname, id, classnames and the element's children. 
 
 
 Justification: createFrag
@@ -289,8 +263,7 @@ It's a kind of a compromise but the fact that it only adds 3 short lines of code
 
 Justification: Element Utils
 ----------------------------
-The element utils are not just methods "important enough" to get in to this library.
-They are used internally (by `createElm`) and I've decided to export them to maximize the library's value.
+Why? because it never ends with just creating an element. We always adding some contents and usually give it a classname or some styling.
 
 
 Justification: Event Binding

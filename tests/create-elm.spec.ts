@@ -84,11 +84,11 @@ export const createElmSpec = () => {
 	});
 
 	it('creates an element with children', () => {
-		const childElm1 = createElm('div', 'child1 ');
-		const childElm2 = createElm('div', 'child2 ');
+		const childElm1 = createElm('div', 'child1');
+		const childText2 = ' child2 ';
 		const childElm3 = createElm('div', 'child3');
 
-		const elm = createElm('div', [childElm1, childElm2, childElm3]);
+		const elm = createElm('div', childElm1, childText2, childElm3);
 
 		expect(elm.nodeName).to.equal('DIV');
 		expect(elm.textContent).to.equal('child1 child2 child3');
