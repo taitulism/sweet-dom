@@ -68,46 +68,6 @@ export const createElmSpec = () => {
 		expect(elm3.classList.contains('the-class')).to.be.true;
 	});
 
-	it('creates an element with attributes', () => {
-		const elm = createElm('input', {
-			type: 'text',
-			name: 'username',
-			value: 'john',
-		});
-
-		expect(elm.nodeName).to.equal('INPUT');
-		expect(elm.getAttribute('type')).to.equal('text');
-		expect(elm.getAttribute('name')).to.equal('username');
-		expect(elm.getAttribute('value')).to.equal('john');
-		expect((elm as HTMLInputElement).value).to.equal('john');
-	});
-
-	it('creates an element with inline style', () => {
-		const elm = createElm('div', {
-			style: {
-				width: '50px',
-				height: '50px',
-			},
-		});
-
-		expect(elm.nodeName).to.equal('DIV');
-		expect(elm.style.width).to.equal('50px');
-		expect(elm.style.height).to.equal('50px');
-	});
-
-	it('creates an element with data attributes', () => {
-		const elm = createElm('div', {
-			data: {
-				name: 'john',
-				age: '30',
-			},
-		});
-
-		expect(elm.nodeName).to.equal('DIV');
-		expect(elm.dataset.name).to.equal('john');
-		expect(elm.dataset.age).to.equal('30');
-	});
-
 	it('creates an element with text', () => {
 		const elm = createElm('div', 'hello');
 
@@ -132,17 +92,5 @@ export const createElmSpec = () => {
 
 		expect(elm.nodeName).to.equal('DIV');
 		expect(elm.textContent).to.equal('child1 child2 child3');
-	});
-
-	it('creates an element with attributes and content', () => {
-		const elm = createElm('div', {
-			style: {backgroundColor: 'red'},
-			data: {name: 'john'},
-		}, 'red john');
-
-		expect(elm.nodeName).to.equal('DIV');
-		expect(elm.style.backgroundColor).to.equal('red');
-		expect(elm.dataset.name).to.equal('john');
-		expect(elm.textContent).to.equal('red john');
 	});
 };

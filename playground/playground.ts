@@ -1,7 +1,7 @@
 import {createElm, bindEvent} from '../src';
 import {startBenchmark} from './benchmark';
 
-const link = createElm('a#link', {href: '#'}, 'Click');
+const link = createElm('a#link', 'Click');
 
 bindEvent(link, 'click', () => {
 	alert('ok');

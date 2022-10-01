@@ -11,7 +11,7 @@ A minimalistic DOM library.
 	* `$()`
 	* `$$()`
 * [Element Creation](#element-creation)
-	* [`createElm()`](#createelmselector-attributes-content)
+	* [`createElm()`](#createelmselector-content)
 	* [`createFrag()`](#createfragcontents)
 * [Element Utils](#element-utils)
 	* [`setStyle()`](#setstyleelm-styleobject)
@@ -27,7 +27,7 @@ A minimalistic DOM library.
 
 &nbsp;
 
-~1.45 KB minified, not gZipped. Peanuts.
+~1.25 KB minified, not gZipped. Peanuts.
 
 ----------------------------------------
 ## Install
@@ -47,10 +47,10 @@ import {bindEvent, createElm} from 'sweet-dom';
 	<summary>See minified code:</summary>
 &nbsp;
 
-Last update: **Sep 30, 2022**
+Last update: **Oct 1, 2022**
 
 ```js
-var sweetDom=function(e){"use strict";const t=(e,t)=>{for(const n in e)Object.hasOwnProperty.call(e,n)&&t(n,e[n])},n=(e,n)=>{t(n,((t,n)=>{e.setAttribute(t,n)}))},r=(e,n)=>{t(n,((t,n)=>{e.style[t]=n}))},s=(e,n)=>{t(n,((t,n)=>{e.dataset[t]=n}))},a=(e,t)=>{Array.isArray(t)?e.append(...t):e.append(t)},o={once:!0},c=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),i=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=c,e.bindEventOnce=(e,t,n,r)=>{const s="boolean"==typeof r?{...o,capture:r}:r?{...r,...o}:o;return c(e,t,n,s)},e.createElm=(e,t,o)=>{const{tag:c,id:i,classnames:l}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),d=document.createElement(c);var u;return i&&(d.id=i),l?.length&&d.classList.add(...l),t&&("string"==typeof(u=t)||u instanceof window.HTMLElement||Array.isArray(u)?a(d,t):((e,t)=>{t.style&&(r(e,t.style),delete t.style),t.data&&(s(e,t.data),delete t.data),n(e,t)})(d,t)),o&&a(d,o),d},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=i(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=i(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=n,e.setContent=a,e.setData=s,e.setStyle=r,Object.defineProperty(e,"__esModule",{value:!0}),e}({});
+var sweetDom=function(e){"use strict";const t=(e,t)=>{for(const n in e)Object.hasOwnProperty.call(e,n)&&t(n,e[n])},n=(e,t)=>{Array.isArray(t)?e.append(...t):e.append(t)},r={once:!0},s=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),o=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=s,e.bindEventOnce=(e,t,n,o)=>{const a="boolean"==typeof o?{...r,capture:o}:o?{...o,...r}:r;return s(e,t,n,a)},e.createElm=(e,t)=>{const{tag:r,id:s,classnames:o}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),a=document.createElement(r);return s&&(a.id=s),o?.length&&a.classList.add(...o),t&&n(a,t),a},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=o(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=o(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=(e,n)=>{t(n,((t,n)=>{e.setAttribute(t,n)}))},e.setContent=n,e.setData=(e,n)=>{t(n,((t,n)=>{e.dataset[t]=n}))},e.setStyle=(e,n)=>{t(n,((t,n)=>{e.style[t]=n}))},Object.defineProperty(e,"__esModule",{value:!0}),e}({});
 ```
 </details>
 
@@ -72,15 +72,17 @@ const elms = $$('.my-classname');
 
 Element Creation
 ----------------
-* [`createElm()`](#createelmselector-attributes-content)
+* [`createElm()`](#createelmselector-content)
 * [`createFrag()`](#createfragcontents)
 
-### **createElm(selector, attributes, content)**
+### **createElm(selector, content)**
 Returns `HTMLElement`
 #### **`selector`** - Required
 A string descriptor of an element. Supports a tag-name, an ID and classnames of the following format:
 ```js
 'tag#id.classname1.classname2'
+
+// Results: <tag id="id" classname="classname1 classname2" />
 ```
 ```js
 const selector = 'input#first-name.form-field.required-field';
@@ -90,25 +92,6 @@ createElm(selector)
 // <input id="first-name" classname="form-field required-field" />
 ```
 
-#### **`attributes`**
-An object whose properties will be set as the element attributes.
-Two special keys are `style` and `data` which expected to be objects. The `style` object is to set inline style properties and the `data` is for data-attributes.
-
-```js
-const attributes = {
-  type: 'text',
-  style: {
-    margin: '5px',
-  },
-  data: {
-    something: 'yes'
-  }
-}
-
-createElm('input', attributes)
-
-// <input type="text" style="margin: 5px;" data-something="yes" />
-```
 
 #### **`contents`**
 The created element's child elements, nodes or text contents. Could be either a single child or an array of children.
