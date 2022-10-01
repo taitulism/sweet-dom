@@ -1,10 +1,9 @@
 import type {AttributesObj, ElementContents} from './types';
-import {forIn} from './for-in';
 
 export const setAttributes = (elm: HTMLElement, attrs: AttributesObj) => {
-	forIn(attrs, (key, value) => {
+	for (const [key, value] of Object.entries(attrs)) {
 		elm.setAttribute(key, value);
-	});
+	}
 };
 
 export const setStyle = (elm: HTMLElement, styleObj: Partial<CSSStyleDeclaration>) => {

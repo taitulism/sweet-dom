@@ -26,7 +26,7 @@ A minimalistic DOM library.
 
 &nbsp;
 
-~1.19 KB minified, not gZipped. Peanuts.
+~1.15 KB minified, not gZipped. Peanuts.
 
 ----------------------------------------
 ## Install
@@ -34,24 +34,23 @@ A minimalistic DOM library.
 $ npm install --save sweet-dom
 ```
 
-### Use:
-```js
-import {bindEvent, createElm} from 'sweet-dom';
-```
-
-### **or just grab the iife and drop it like it's hot.**
-
 <details>
 	<!-- TODO: keep up-to-date -->
-	<summary>See minified code:</summary>
+	<summary>or click here, grab the iife and drop it like it's hot.</summary>
 &nbsp;
 
 Last update: **Oct 1, 2022**
 
 ```js
-var sweetDom=function(e){"use strict";const t=(e,t)=>{Array.isArray(t)?e.append(...t):e.append(t)},n={once:!0},r=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),s=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=r,e.bindEventOnce=(e,t,s,o)=>{const c="boolean"==typeof o?{...n,capture:o}:o?{...o,...n}:n;return r(e,t,s,c)},e.createElm=(e,n)=>{const{tag:r,id:s,classnames:o}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),c=document.createElement(r);return s&&(c.id=s),o?.length&&c.classList.add(...o),n&&t(c,n),c},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=s(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=s(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=(e,t)=>{((e,t)=>{for(const n in e)Object.hasOwnProperty.call(e,n)&&t(n,e[n])})(t,((t,n)=>{e.setAttribute(t,n)}))},e.setContent=t,e.setStyle=(e,t)=>{Object.assign(e.style,t)},Object.defineProperty(e,"__esModule",{value:!0}),e}({});
+var sweetDom=function(e){"use strict";const t=(e,t)=>{Array.isArray(t)?e.append(...t):e.append(t)},n={once:!0},r=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),s=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=r,e.bindEventOnce=(e,t,s,o)=>{const c="boolean"==typeof o?{...n,capture:o}:o?{...o,...n}:n;return r(e,t,s,c)},e.createElm=(e,n)=>{const{tag:r,id:s,classnames:o}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),c=document.createElement(r);return s&&(c.id=s),o?.length&&c.classList.add(...o),n&&t(c,n),c},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=s(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=s(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=(e,t)=>{for(const[n,r]of Object.entries(t))e.setAttribute(n,r)},e.setContent=t,e.setStyle=(e,t)=>{Object.assign(e.style,t)},Object.defineProperty(e,"__esModule",{value:!0}),e}({});
 ```
 </details>
+
+&nbsp;
+### Use:
+```js
+import {createElm, bindEvent} from 'sweet-dom';
+```
 
 &nbsp;
 
