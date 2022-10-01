@@ -8,8 +8,8 @@ A minimalistic DOM library.
 
 ### What's in the box?
 * [Element Selection](#element-selection)
-	* `$()`
-	* `$$()`
+	* $()
+	* $$()
 * [Element Creation](#element-creation)
 	* [`createElm()`](#createelmselector-attributes-content)
 	* [`createFrag()`](#createfragcontents)
@@ -19,11 +19,11 @@ A minimalistic DOM library.
 	* [`setData()`](#setdataelm-dataobject)
 	* [`setContent()`](#setcontentelm-contents)
 * [Element Insertion](#element-insertion)
-	* `insert().before()`
-	* `insert().after()`
+	* insert().before()
+	* insert().after()
 * [Event Binding](#event-binding)
-	* `bindEvent()`
-	* `bindEventOnce()`
+	* bindEvent()
+	* bindEventOnce()
 
 &nbsp;
 
@@ -336,7 +336,7 @@ Justification: Element Insertion
 --------------------------------
 Because I never remember the arguments order with: `parent.insertBefore(elm1, elm2)`. This API is clearer than vanilla js with a relatively small footprint.
 Because there is no `insertAfter`.
-Because it helps when you want to insert between text nodes or anonymouse-non-queryable elements. 
+Because vanilla still requires the parent. In the past, to remove an elm we needed `node.parent.remove(node)` then came `elm.remove()`. `insertBefore` still needs the parent.
 -->
 
 
