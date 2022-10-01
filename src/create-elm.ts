@@ -4,12 +4,16 @@ import type {
 	HtmlTagName,
 } from './types';
 
+const BY_DOT = '.';
+const BY_HASH_SIGN = '#';
+const DIV = 'div';
+
 const parseElmSelector = (elmStr: string): ElementSelector => {
-	const [tagAndId, ...classnames] = elmStr.split('.');
-	const [tag, id] = tagAndId.split('#');
+	const [tagAndId, ...classnames] = elmStr.split(BY_DOT);
+	const [tag, id] = tagAndId.split(BY_HASH_SIGN);
 
 	return {
-		tag: (tag || 'div') as HtmlTagName,
+		tag: (tag || DIV) as HtmlTagName,
 		id: id || undefined,
 		classnames: classnames || undefined,
 	};
