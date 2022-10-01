@@ -1,6 +1,6 @@
 import * as jsdom from 'jsdom';
 import {expect} from 'chai';
-import {setAttributes, setStyle, setData, setContent} from '../src';
+import {setAttributes, setStyle, setContent} from '../src';
 import {glb, setWinDoc} from './utils';
 
 export const elmUtilsSpec = () => {
@@ -37,16 +37,6 @@ export const elmUtilsSpec = () => {
 			expect(elm.style.color).to.equal('');
 			setStyle(elm, {color: 'red'});
 			expect(elm.style.color).to.equal('red');
-		});
-	});
-
-	describe('setData(elm, dataObj)', () => {
-		it('sets data attributes on an element', () => {
-			const elm = document.createElement('div');
-
-			expect(elm.dataset.some).to.equal(undefined);
-			setData(elm, {some: 'thing'});
-			expect(elm.dataset.some).to.equal('thing');
 		});
 	});
 

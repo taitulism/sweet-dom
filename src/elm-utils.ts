@@ -1,4 +1,4 @@
-import type {AttributesObj, DataObj, ElementContents, StyleObj} from './types';
+import type {AttributesObj, ElementContents, StyleObj} from './types';
 import {forIn} from './for-in';
 
 export const setAttributes = (elm: HTMLElement, attrs: AttributesObj) => {
@@ -11,12 +11,6 @@ export const setStyle = (elm: HTMLElement, style: StyleObj) => {
 	forIn(style, (cssKey, cssValue) => {
 		// @ts-ignore
 		elm.style[cssKey] = cssValue;
-	});
-};
-
-export const setData = (elm: HTMLElement, data: DataObj) => {
-	forIn(data, (dataKey, dataValue) => {
-		elm.dataset[dataKey] = dataValue;
 	});
 };
 

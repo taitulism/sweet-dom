@@ -9,7 +9,6 @@ export type UnknownObject = Obj<string, unknown>
 export type Content = Node | string
 export type ElementContents = Content | Array<Content>
 
-export type DataObj = Dictionary
 export type StyleObj = Dictionary      // TODO:ts Partial<CSSStyleDeclaration>
 export type AttributesObj = Dictionary // TODO:ts {[K in keyof Attr]: string}
 

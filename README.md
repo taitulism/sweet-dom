@@ -16,7 +16,6 @@ A minimalistic DOM library.
 * [Element Utils](#element-utils)
 	* [`setStyle()`](#setstyleelm-styleobject)
 	* [`setAttributes()`](#setattributeselm-attrobject)
-	* [`setData()`](#setdataelm-dataobject)
 	* [`setContent()`](#setcontentelm-contents)
 * [Element Insertion](#element-insertion)
 	* `insert().before()`
@@ -27,7 +26,7 @@ A minimalistic DOM library.
 
 &nbsp;
 
-~1.25 KB minified, not gZipped. Peanuts.
+~1.2 KB minified, not gZipped. Peanuts.
 
 ----------------------------------------
 ## Install
@@ -50,7 +49,7 @@ import {bindEvent, createElm} from 'sweet-dom';
 Last update: **Oct 1, 2022**
 
 ```js
-var sweetDom=function(e){"use strict";const t=(e,t)=>{for(const n in e)Object.hasOwnProperty.call(e,n)&&t(n,e[n])},n=(e,t)=>{Array.isArray(t)?e.append(...t):e.append(t)},r={once:!0},s=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),o=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=s,e.bindEventOnce=(e,t,n,o)=>{const a="boolean"==typeof o?{...r,capture:o}:o?{...o,...r}:r;return s(e,t,n,a)},e.createElm=(e,t)=>{const{tag:r,id:s,classnames:o}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),a=document.createElement(r);return s&&(a.id=s),o?.length&&a.classList.add(...o),t&&n(a,t),a},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=o(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=o(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=(e,n)=>{t(n,((t,n)=>{e.setAttribute(t,n)}))},e.setContent=n,e.setData=(e,n)=>{t(n,((t,n)=>{e.dataset[t]=n}))},e.setStyle=(e,n)=>{t(n,((t,n)=>{e.style[t]=n}))},Object.defineProperty(e,"__esModule",{value:!0}),e}({});
+var sweetDom=function(e){"use strict";const t=(e,t)=>{for(const n in e)Object.hasOwnProperty.call(e,n)&&t(n,e[n])},n=(e,t)=>{Array.isArray(t)?e.append(...t):e.append(t)},r={once:!0},s=(e,t,n,r)=>(e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)),o=e=>"string"==typeof e?document.querySelector(e):e;return e.$=(e,t=document)=>t.querySelector(e),e.$$=(e,t=document)=>t.querySelectorAll(e),e.bindEvent=s,e.bindEventOnce=(e,t,n,o)=>{const c="boolean"==typeof o?{...r,capture:o}:o?{...o,...r}:r;return s(e,t,n,c)},e.createElm=(e,t)=>{const{tag:r,id:s,classnames:o}=(e=>{const[t,...n]=e.split("."),[r,s]=t.split("#");return{tag:r||"div",id:s||void 0,classnames:n||void 0}})(e),c=document.createElement(r);return s&&(c.id=s),o?.length&&c.classList.add(...o),t&&n(c,t),c},e.createFrag=(...e)=>{const t=document.createDocumentFragment();return e.length&&t.append(...e),t},e.insert=e=>({before:t=>{const n=o(t);n?.parentElement?.insertBefore(e,n)},after:t=>{const n=o(t);n?.parentElement?.insertBefore(e,n.nextSibling)}}),e.setAttributes=(e,n)=>{t(n,((t,n)=>{e.setAttribute(t,n)}))},e.setContent=n,e.setStyle=(e,n)=>{t(n,((t,n)=>{e.style[t]=n}))},Object.defineProperty(e,"__esModule",{value:!0}),e}({});
 ```
 </details>
 
@@ -115,6 +114,7 @@ createElm('button', contents)
 ```
 
 
+
 ### **createFrag(...contents?)**
 Returns `DocumentFragment`
 
@@ -127,11 +127,11 @@ createFrag(elm1, elm2, 'some string', elm3)
 ```
 
 
+
 Element Utils
 -------------
 * [`setStyle()`](#setstyleelm-styleobject)
 * [`setAttributes()`](#setattributeselm-attrobject)
-* [`setData()`](#setdataelm-dataobject)
 * [`setContent()`](#setcontentelm-contents)
 
 ### `setStyle(elm, styleObject)`
@@ -161,22 +161,6 @@ setAttributes(inputElm, {
 
 /* 
   <input type="number" name="age" />
-*/
-```
-
-
-
-### `setData(elm, dataObject)`
-Sets multiple data-attributes on an element.
-
-```js
-setData(divElm, {
-	hello: 'world',
-	something: 'else',
-});
-
-/* 
-  <div data-hello="world" data-something="else" />
 */
 ```
 
