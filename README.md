@@ -8,8 +8,8 @@ A minimalistic DOM library.
 
 ### What's in the box?
 * [Element Selection](#element-selection)
-	* $()
-	* $$()
+	* `$()`
+	* `$$()`
 * [Element Creation](#element-creation)
 	* [`createElm()`](#createelmselector-attributes-content)
 	* [`createFrag()`](#createfragcontents)
@@ -19,11 +19,11 @@ A minimalistic DOM library.
 	* [`setData()`](#setdataelm-dataobject)
 	* [`setContent()`](#setcontentelm-contents)
 * [Element Insertion](#element-insertion)
-	* insert().before()
-	* insert().after()
+	* `insert().before()`
+	* `insert().after()`
 * [Event Binding](#event-binding)
-	* bindEvent()
-	* bindEventOnce()
+	* `bindEvent()`
+	* `bindEventOnce()`
 
 &nbsp;
 
