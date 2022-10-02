@@ -43,6 +43,7 @@ const browserMini = {
 	plugins: [typescript(), terser()],
 	output: {
 		banner,
+		esModule: false,
 		file: pkg.browser,
 		format: 'iife',
 		name: 'sweetDom',

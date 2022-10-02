@@ -4,7 +4,7 @@
 
 sweet-dom
 =========
-A minimalistic DOM library.
+A minimalistic JavaScript DOM library.
 
 ### What's in the box?
 > Only ~1.1 KB minified, not gZipped. Peanuts.
