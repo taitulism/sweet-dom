@@ -3,7 +3,3 @@ dist: xenial
 language: node_js
 node_js:
   - "lts/*"
-
-branches:
-  only:
-  - master
