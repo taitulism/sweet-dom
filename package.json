@@ -4,11 +4,10 @@
    "version": "0.0.0",
    "license": "MIT",
    "main": "./src/index.ts",
-   "browser": "./dist/browser/sweet-dom.min.js",
    "module": "./dist/esm/sweet-dom.esm.js",
    "types": "./dist/esm/sweet-dom.esm.d.ts",
    "files": [
-      "dist"
+      "dist/esm"
    ],
    "author": "Taitu Lizenbaum <taitu.dev@gmail.com>",
    "homepage": "https://github.com/taitulism/sweet-dom#readme",
