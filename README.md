@@ -1,5 +1,4 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/taitulism/sweet-dom.svg)](https://travis-ci.org/taitulism/sweet-dom)
 ![Build Status](https://github.com/taitulism/sweet-dom/actions/workflows/node-ci.yml/badge.svg)
 
 
