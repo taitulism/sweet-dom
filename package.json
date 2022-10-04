@@ -15,17 +15,18 @@
    "scripts": {
       "dev": "npm run test:watch",
       "play": "rollup --config rollup.dev.config.js --watch",
-      "build": "rollup --config rollup.prod.config.js",
       "prebuild": "rm -rf ./dist",
+      "build": "rollup --config rollup.prod.config.js",
       "postbuild": "rm -rf ./dist/esm/temp-dts",
       "test": "mocha",
       "test:watch": "mocha --watch-files src,tests --watch",
       "check": "npm run lint && npm run check:types && npm test",
       "check:types": "tsc --noEmit",
       "lint": "eslint ./src ./tests",
-      "prepublishOnly": "npm run build",
       "preversion": "npm run check",
-      "postversion": "git push && git push --tags"
+      "version": "npm run build && git add dist",
+      "postversion": "git push && git push --tags",
+      "prepublishOnly": "npm run check"
    },
    "devDependencies": {
       "@rollup/plugin-commonjs": "22.0.1",
