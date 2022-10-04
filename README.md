@@ -1,5 +1,5 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Build Status](https://github.com/taitulism/sweet-dom/actions/workflows/node-ci.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
 sweet-dom
@@ -7,7 +7,7 @@ sweet-dom
 A minimalistic JavaScript DOM library.
 
 ### What's in the box?
-> Only ~1.1 KB minified, not gZipped. Peanuts.
+> ~1.1 KB of runtime code (minified). Peanuts.
 
 * [Element Selection](#element-selection)
 	* `$()`
