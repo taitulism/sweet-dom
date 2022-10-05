@@ -44,7 +44,7 @@ const browserMini = {
 	output: {
 		banner,
 		esModule: false,
-		file: pkg.browser,
+		file: './dist/browser/sweet-dom.min.js',
 		format: 'iife',
 		name: 'sweetDom',
 	},
