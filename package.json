@@ -49,8 +49,8 @@
       "tslib": "2.4.0",
       "typescript": "4.8.4"
    },
-	"keywords": [
-		"DOM",
-		"dom-library"
-	]
+   "keywords": [
+      "DOM",
+      "dom-library"
+   ]
 }
