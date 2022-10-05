@@ -33,7 +33,7 @@ A minimalistic JavaScript DOM library.
 $ npm install --save sweet-dom
 ```
 
-or [grab the iife](https://raw.githubusercontent.com/taitulism/sweet-dom/develop/dist/browser/sweet-dom.min.js) and drop it like it's hot.
+or [grab the iife](https://cdn.jsdelivr.net/gh/taitulism/sweet-dom/dist/browser/sweet-dom.min.js) and drop it like it's hot.
 
 
 ## Usage
