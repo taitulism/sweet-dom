@@ -1,6 +1,6 @@
 {
    "name": "sweet-dom",
-   "description": "A minimalistic JavaScript DOM library.",
+   "description": "A DOM library for developers who don't want a DOM library.",
    "version": "0.0.0",
    "license": "MIT",
    "main": "./src/index.ts",

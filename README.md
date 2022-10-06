@@ -4,10 +4,24 @@
 
 sweet-dom
 =========
-A minimalistic JavaScript DOM library.
+A DOM library for developers who don't want a DOM library.
 
-### What's in the box?
-> ~1.1 KB of runtime code (minified). Peanuts.
+> **Only ~1.1 KB*** of runtime code. Peanuts.
+> ##### * minified
+
+&nbsp;
+
+Modern JavaScript has improved so much, old IE is out of the picture and the need for a comprehensive DOM library is decreasing.
+
+If you are comfortable with writing vanilla DOM but wouldn't mind just a tiny bit of sugar on top - this is for you.
+
+A good pick for small vanilla projects or for working with existing DOM (e.g browser extension).  
+
+Could also be handy as a secondary pocket tool alongside your main components library, for those cases you do need some vanilla DOM (e.g. handling Ref elements and protals with React).
+
+&nbsp;
+
+## What's in the box?
 
 * [Element Selection](#element-selection)
 	* `$()`
@@ -28,7 +42,7 @@ A minimalistic JavaScript DOM library.
 &nbsp;
 
 ----------------------------------------
-## Installation
+## **Installation**
 ```sh
 $ npm install --save sweet-dom
 ```
@@ -36,19 +50,19 @@ $ npm install --save sweet-dom
 or [grab the iife](https://cdn.jsdelivr.net/gh/taitulism/sweet-dom/dist/browser/sweet-dom.min.js) and drop it like it's hot.
 
 
-## Usage
+## **Usage**
 ```js
 import {createElm, bindEvent} from 'sweet-dom';
 ```
 
 &nbsp;
 
--------------------------------------------------------
 
-# API
+## **API**
 
-Element Selection
------------------
+--------------------
+## Element Selection
+--------------------
 * **`$`** &nbsp; - an alias for `document.querySelector()`
 * **`$$`** - an alias for `document.querySelectorAll()`
 
@@ -57,14 +71,15 @@ const elm = $('#my-id');
 const elms = $$('.my-classname');
 ```
 
+&nbsp;
 
-
-Element Creation
-----------------
+-------------------
+## Element Creation
+-------------------
 * [`createElm()`](#createelmselector-content)
 * [`createFrag()`](#createfragcontents)
 
-### **createElm(selector, content1, content2, ...contentN)**
+### **`createElm(selector, content1, content2, ...contentN)`**
 Returns `HTMLElement`
 #### **`selector`** - Required
 A string descriptor of an element. Supports a tag-name, an ID and classnames of the following format:
@@ -105,9 +120,9 @@ createElm('button', ...contents)
 //<button> ☻ Click</button>
 ```
 
+&nbsp;
 
-
-### **createFrag(...contents?)**
+### **`createFrag(...contents?)`**
 Returns `DocumentFragment`
 
 #### **`...contents`**
@@ -118,14 +133,15 @@ Example:
 createFrag(elm1, elm2, 'some string', elm3)
 ```
 
+&nbsp;
 
-
-Element Utils
--------------
+----------------
+## Element Utils
+----------------
 * [`setStyle()`](#setstyleelm-styleobject)
 * [`setAttributes()`](#setattributeselm-attrobject)
 
-### `setStyle(elm, styleObject)`
+### **`setStyle(elm, styleObject)`**
 Sets an element inline style.
 
 ```js
@@ -155,20 +171,22 @@ setAttributes(inputElm, {
 */
 ```
 
+&nbsp;
 
-
-Element Insertion
-------------------
+--------------------
+## Element Insertion
+--------------------
 For placing elements.
 
 **`insert(elm)`**
-> Both methods accept an element or a query selector string.
-> To insert multiple elements pass in a fragment with children (see [createFrag](#createfragcontents)) not an array of elements.
 
 * **`.before(anotherElm)`**
 * **`.after(anotherElm)`**
 
-`.before(anotherElm)`
+> Both methods accept an element or a query selector string.
+> To insert multiple elements pass in a fragment with children (see [createFrag](#createfragcontents)) not an array of elements.
+
+### **`.before(anotherElm)`**
 ```js
 insert(elmA).before(elmB)
 
@@ -176,7 +194,7 @@ insert(elmA).before(elmB)
 // <elmB>
 ```
 
-`.after(anotherElm)`
+### **`.after(anotherElm)`**
 ```js
 insert(elm).after('#logo')
 
@@ -184,10 +202,11 @@ insert(elm).after('#logo')
 // <elm>
 ```
 
+&nbsp;
 
-
-Event Binding
--------------
+----------------
+## Event Binding
+----------------
 * **`bindEvent()`**
 * **`bindEventOnce()`**
 
@@ -197,7 +216,9 @@ Accepts the event-target as first argument and the rest are the same arguments a
 Returns a remove-listener function
 
 ```js
-const unBindClick = bindEvent(elm, 'click', (ev) => {...});
+const unBindClick = bindEvent(elm, 'click', (ev) => {...})
+// or:
+const unBindClick = bindEventOnce(elm, 'click', (ev) => {...})
 
 unBindClick();
 ```
@@ -332,7 +353,3 @@ Publish a new version
 		* `prebuild`  - Delete `"dist"` folder
 		* `build`     - Rollup build for production
 		* `postbuild` - Delete temporary declaration folder inside `"dist"`
-
-
-
-
