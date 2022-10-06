@@ -6,17 +6,12 @@ sweet-dom
 =========
 A DOM library for developers who don't want a DOM library.
 
-> **Only ~1.1 KB*** of runtime code. Peanuts.
-> ##### * minified
+> **Only 1.2 KB** of minified runtime code. Peanuts.
 
-&nbsp;
-
-Modern JavaScript has improved so much, old IE is out of the picture and the need for a comprehensive DOM library is decreasing.
-
+Modern JavaScript has improved so much, old IE is out of the picture and the need for a comprehensive DOM library is decreasing.  
 If you are comfortable with writing vanilla DOM but wouldn't mind just a tiny bit of sugar on top - this is for you.
 
 A good pick for small vanilla projects or for working with existing DOM (e.g browser extension).  
-
 Could also be handy as a secondary pocket tool alongside your main components library, for those cases you do need some vanilla DOM (e.g. handling Ref elements and protals with React).
 
 &nbsp;
@@ -62,7 +57,7 @@ import {createElm, bindEvent} from 'sweet-dom';
 
 --------------------
 ## Element Selection
---------------------
+
 * **`$`** &nbsp; - an alias for `document.querySelector()`
 * **`$$`** - an alias for `document.querySelectorAll()`
 
@@ -75,7 +70,7 @@ const elms = $$('.my-classname');
 
 -------------------
 ## Element Creation
--------------------
+
 * [`createElm()`](#createelmselector-content)
 * [`createFrag()`](#createfragcontents)
 
@@ -137,7 +132,7 @@ createFrag(elm1, elm2, 'some string', elm3)
 
 ----------------
 ## Element Utils
-----------------
+
 * [`setStyle()`](#setstyleelm-styleobject)
 * [`setAttributes()`](#setattributeselm-attrobject)
 
@@ -175,7 +170,7 @@ setAttributes(inputElm, {
 
 --------------------
 ## Element Insertion
---------------------
+
 For placing elements.
 
 **`insert(elm)`**
@@ -206,7 +201,7 @@ insert(elm).after('#logo')
 
 ----------------
 ## Event Binding
-----------------
+
 * **`bindEvent()`**
 * **`bindEventOnce()`**
 
