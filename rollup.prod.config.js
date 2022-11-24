@@ -7,7 +7,7 @@ const pkgNameAndVersion = pkg.name + ' v' + pkg.version;
 const license = `${pkg.license} License`;
 const author = '© Taitu Lizenbaum'; // TODO: pkg.author.name;
 const year = new Date().getFullYear();
-const repoUrl = 'https://github.com/taitulism/sweet-dom.git'; // TODO: pkg.repository.url;
+const repoUrl = 'https://github.com/taitulism/sweet-dom'; // TODO: pkg.repository.url;
 const banner = `/*! ${pkgNameAndVersion} | ${license} | ${author} ${year} | ${repoUrl} */`;
 
 const withTypeDeclarations = {
