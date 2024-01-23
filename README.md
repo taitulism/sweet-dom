@@ -6,7 +6,7 @@ sweet-dom
 =========
 A DOM library for developers who don't want a DOM library.
 
-> **Only 1.2 KB** of minified runtime code. Peanuts.
+> **Less than 2 KB** of minified runtime code. Peanuts.
 
 Modern JavaScript has improved so much, old IE is out of the picture and the need for a comprehensive DOM library is decreasing.  
 If you are comfortable with writing vanilla DOM but wouldn't mind just a tiny bit of sugar on top - this is for you.

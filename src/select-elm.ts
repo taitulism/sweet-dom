@@ -1,4 +1,4 @@
-import type {SelectorContext} from '~types';
+import type {SelectorContext} from './types';
 
 /*
  * `querySelectorAll` returns a static NodeList.

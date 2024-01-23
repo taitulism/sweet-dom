@@ -16,7 +16,7 @@
       "dev": "npm run test:watch",
       "play": "rollup --config rollup.dev.config.js --watch",
       "prebuild": "rm -rf ./dist",
-      "build": "rollup --config rollup.prod.config.js",
+      "build": "rollup --config rollup.prod.config.js --bundleConfigAsCjs",
       "postbuild": "rm -rf ./dist/esm/temp-dts",
       "test": "vitest run ./tests/index.spec.ts",
       "test:watch": "vitest watch ./tests/index.spec.ts",
