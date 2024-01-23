@@ -60,6 +60,16 @@ import {createElm, bindEvent} from 'sweet-dom';
 
 * **`$`** &nbsp; - an alias for `document.querySelector()`
 * **`$$`** - an alias for `document.querySelectorAll()`
+* **`$id`** - A shortcut for `document.getElementById()`
+* **`$class`** - A shortcut for `document.getElementsByClassName()`
+* **`$tag`** - A shortcut for `document.getElementsByTagName()`
+
+
+<!-- TODO: NOT ARRAY -->
+> The methods that return multiple elements, `$$`, `$class`, `$tag` - returns an array of elements instead of live-collections or node-lists.
+
+> All methods except `$id` also accepts a second argument: the context element to query (the default is `document`).
+
 
 ```js
 const elm = $('#my-id');

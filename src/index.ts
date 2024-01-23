@@ -1,4 +1,4 @@
-export {$, $$} from './select-elm';
+export {$, $$, $id, $class, $tag} from './select-elm';
 export {createElm} from './create-elm';
 export {setAttributes, setStyle} from './elm-utils';
 export {createFrag} from './create-frag';

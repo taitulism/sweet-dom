@@ -6,7 +6,7 @@ import {selectElmSpec} from './select-elm.spec';
 import {bindEventSpec} from './bind-events.spec';
 import {insertElmSpec} from './insert-elm.spec';
 import {
-	$, $$,
+	$, $$, $id, $class, $tag,
 	setAttributes,
 	setStyle,
 	createElm,
@@ -24,6 +24,18 @@ describe('sweet-dom', () => {
 
 		it('exports `$$`', () => {
 			expect($$).to.be.a('function');
+		});
+
+		it('exports `$id`', () => {
+			expect($id).to.be.a('function');
+		});
+
+		it('exports `$class`', () => {
+			expect($class).to.be.a('function');
+		});
+
+		it('exports `$tag`', () => {
+			expect($tag).to.be.a('function');
 		});
 
 		it('exports `createElm`', () => {

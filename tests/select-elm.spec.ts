@@ -1,6 +1,6 @@
 import {describe, it, expect, beforeAll, afterAll} from 'vitest';
 import {JSDOM, DOMWindow} from 'jsdom';
-import {$, $$} from '../src/select-elm';
+import {$, $$, $id, $class, $tag} from '../src/select-elm';
 
 export const selectElmSpec = () => {
 	let defaultGlobalDocument: Document;
@@ -60,6 +60,72 @@ export const selectElmSpec = () => {
 
 			expect(elms).to.have.lengthOf(1);
 			expect(elms[0].nodeName).to.equal('SPAN');
+		});
+	});
+
+	describe('$id', () => {
+		it('selects an element by id', () => {
+			const elm = $id('root')!;
+
+			expect(elm.nodeName).to.equal('MAIN');
+		});
+	});
+
+	describe('$class', () => {
+		it('returns an array', () => {
+			const elms = $class('box');
+
+			expect(elms).to.be.an('array');
+		});
+
+		it('$class - single classname', () => {
+			const elms = $class('box');
+
+			expect(elms.length).to.equal(4);
+			expect(elms[0].nodeName).to.equal('SECTION');
+			expect(elms[1].nodeName).to.equal('DIV');
+			expect(elms[2].nodeName).to.equal('DIV');
+			expect(elms[3].nodeName).to.equal('SPAN');
+		});
+
+		it('$class - with context', () => {
+			const ctx = $id('side-menu')!;
+			const elms = $class('box', ctx);
+
+			expect(elms.length).to.equal(1);
+			expect(elms[0].nodeName).to.equal('SPAN');
+		});
+
+		it('$class - multiple classnames', () => {
+			const elms = $class('special box');
+
+			expect(elms.length).to.equal(1);
+			expect(elms[0].nodeName).to.equal('SECTION');
+		});
+	});
+
+	describe('$tag', () => {
+		it('returns an array', () => {
+			const elms = $tag('div');
+
+			expect(elms).to.be.an('array');
+		});
+
+		it('$tag', () => {
+			const elms = $tag('div');
+
+			expect(elms.length).to.equal(3);
+			expect(elms[0].textContent).to.equal('A');
+			expect(elms[1].textContent).to.equal('B');
+			expect(elms[2].textContent).to.equal('D');
+		});
+
+		it('$tag - with context', () => {
+			const ctx = $id('side-menu')!;
+			const elms = $tag('div', ctx);
+
+			expect(elms.length).to.equal(1);
+			expect(elms[0].textContent).to.equal('D');
 		});
 	});
 };

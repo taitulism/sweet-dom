@@ -1,3 +1,5 @@
+export type SelectorContext = Document | HTMLElement
+
 export type Content = Node | string
 export type AttributesObj = {[key: string]: string;} // TODO:ts {[K in keyof Attr]: string}
 
