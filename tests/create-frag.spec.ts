@@ -1,21 +1,7 @@
-import * as jsdom from 'jsdom';
-import {expect} from 'chai';
+import {it, expect} from 'vitest';
 import {createFrag} from '../src/create-frag';
-import {glb, setWinDoc} from './utils';
 
 export const createFragSpec = () => {
-	before(() => {
-		const dom = new jsdom.JSDOM('');
-
-		setWinDoc(dom);
-	});
-
-	after(() => {
-		glb.window.close();
-		glb.window = undefined;
-		glb.document = undefined;
-	});
-
 	it('creates a document fragment', () => {
 		expect(createFrag()).to.be.a('DocumentFragment');
 	});

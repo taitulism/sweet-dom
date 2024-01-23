@@ -1,4 +1,4 @@
-import {expect} from 'chai';
+import {describe, it, expect} from 'vitest';
 import {createElmSpec} from './create-elm.spec';
 import {elmUtilsSpec} from './elm-utils.spec';
 import {createFragSpec} from './create-frag.spec';

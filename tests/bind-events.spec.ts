@@ -1,35 +1,40 @@
-import {expect} from 'chai';
-import * as jsdom from 'jsdom';
+import {describe, it, expect, beforeEach, afterEach} from 'vitest';
+import {JSDOM, DOMWindow} from 'jsdom';
 import {bindEvent, bindEventOnce} from '../src/bind-event';
-import {glb, setWinDoc} from './utils';
 
 export const bindEventSpec = () => {
 	let button: HTMLButtonElement | undefined;
+	let document: Document;
+	let window: DOMWindow;
 
-	beforeEach((done) => {
-		const dom = new jsdom.JSDOM('<button id="the-button">Click</button>');
+	beforeEach(() => {
+		const dom = new JSDOM('<button id="the-button">Click</button>');
 
-		setWinDoc(dom);
+		/* eslint-disable prefer-destructuring */
+		window = dom.window;
+		document = dom.window.document;
+		/* eslint-enable prefer-destructuring */
+
 		button = document.getElementById('the-button') as HTMLButtonElement;
-		done();
 	});
 
 	afterEach(() => {
-		glb.window.close();
+		window.close();
 		button = undefined;
-		glb.window = undefined;
-		glb.document = undefined;
 	});
 
-	it('binds a listener on an element', (done) => {
+	it('binds a listener on an element', () => {
+		let clicked = false;
+
 		const unbind = bindEvent(button!, 'click', (ev) => {
 			expect(ev).to.be.ok;
-			expect(ev.target).to.be.instanceOf(glb.window.HTMLButtonElement);
+			expect(ev.target).to.be.instanceOf(window.HTMLButtonElement);
+			clicked = true;
 			unbind();
-			done();
 		});
 
 		button!.click();
+		expect(clicked).to.be.true;
 	});
 
 	it('returns a remove listener function', () => {
@@ -50,7 +55,7 @@ export const bindEventSpec = () => {
 	it('accepts a `useCapture` boolean', () => {
 		const occurences: Array<string> = [];
 		const expectedResult = ['body capture', 'button', 'body bubble'];
-		const {body} = glb.window.document;
+		const {body} = document;
 
 		const unbind1 = bindEvent(body, 'click', () => {
 			occurences.push('body bubble');

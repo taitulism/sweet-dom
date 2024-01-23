@@ -1,21 +1,7 @@
-import * as jsdom from 'jsdom';
-import {expect} from 'chai';
+import {describe, it, expect} from 'vitest';
 import {setAttributes, setStyle} from '../src';
-import {glb, setWinDoc} from './utils';
 
 export const elmUtilsSpec = () => {
-	before(() => {
-		const dom = new jsdom.JSDOM('');
-
-		setWinDoc(dom);
-	});
-
-	after(() => {
-		glb.window.close();
-		glb.window = undefined;
-		glb.document = undefined;
-	});
-
 	describe('setAttributes(elm, attrs)', () => {
 		it('sets attributes on an element', () => {
 			const elm = document.createElement('input');

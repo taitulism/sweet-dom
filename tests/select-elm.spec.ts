@@ -1,20 +1,25 @@
-import {expect} from 'chai';
-import {JSDOM} from 'jsdom';
+import {describe, it, expect, beforeAll, afterAll} from 'vitest';
+import {JSDOM, DOMWindow} from 'jsdom';
 import {$, $$} from '../src/select-elm';
-import {glb, setWinDoc} from './utils';
 
 export const selectElmSpec = () => {
-	before((done) => {
-		JSDOM.fromFile('./tests/html/select-elm.html').then((dom) => {
-			setWinDoc(dom);
-			done();
-		});
-	});
+	let defaultGlobalDocument: Document;
+	let window: DOMWindow;
+	let document: Document;
 
-	after(() => {
-		glb.window.close();
-		glb.window = undefined;
-		glb.document = undefined;
+	beforeAll(() => JSDOM.fromFile('./tests/html/select-elm.html').then((dom) => {
+		/* eslint-disable prefer-destructuring */
+		window = dom.window;
+		document = dom.window.document;
+		/* eslint-enable prefer-destructuring */
+
+		defaultGlobalDocument = globalThis.document;
+		globalThis.document = document;
+	}));
+
+	afterAll(() => {
+		window.close();
+		globalThis.document = defaultGlobalDocument;
 	});
 
 	describe('$', () => {

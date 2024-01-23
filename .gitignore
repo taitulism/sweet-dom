@@ -2,3 +2,4 @@ node_modules
 dist/*
 !dist/browser
 dev-bundles
+coverage

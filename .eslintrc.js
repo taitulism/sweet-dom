@@ -3,7 +3,6 @@ module.exports = {
 	env: {
 		'es2020': true,
 		browser: true,
-		mocha: true,
 	},
 	extends: [
 		'eslint:recommended',
@@ -20,9 +19,7 @@ module.exports = {
 	// 		globals: {
 	// 			expect: 'readonly',
 	// 		},
-	// 		env: {
-	// 			mocha: true
-	// 		},
+	// 		env: {},
 	// 		rules: {
 	// 			'no-unused-expressions': 'off',
 	// 			'no-magic-numbers': 'off',

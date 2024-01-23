@@ -306,45 +306,53 @@ Development
 
 TDD
 ---
-`npm run dev` - Run Mocha tests + watch
+`npm run dev` - Vitest + watch
 
 &nbsp;
 
-Playground
-----------
+Browser Playground
+------------------
 1. `npm run play`
-2. Open the playground HTML file in the browser:
-	* `<PATH_TO>/playground/playground.html` 
+2. Open file in the browser:
+	* `./playground/playground.html` 
 
 &nbsp;
 
 Check Stuff
 -----------
-* `lint`        - Eslint check issues
-* `test`        - Mocha test (for build)
-* `check:types` - TypeScript type checking
-* `check`       - lint + types + test
+* `npm run lint`   - Eslint check issues
+* `npm run types`  - TypeScript type checking
+* `npm run test`   - Vitest (for build)
+* `npm run checks` - lint + types + test (all)
 
 &nbsp;
 
 Publish a new version
 ---------------------
 1.
+	> **`version` script Note:**  
+	> If something from `dist` folder is git tracked - add `" && git add dist"` to end of the script 
+	
+	&nbsp;
+
 	```sh
 	$ npm version major|minor|patch
 	```  
 	triggers:
 
-	* `preversion`  - Runs the npm `check` script
+	* `preversion`  - Runs the `checks` script
+	* `version`     - Runs the `build` script
+		* `prebuild`  - Delete `"dist"` folder
+		* `build`     - Rollup build for production
+		* `postbuild` - Delete temporary declaration folder inside `"dist"`
 	* `postversion` - Git push + tags
 
+	&nbsp;
+	
 2.
 	```sh
 	$ npm publish
 	``` 
 	triggers:
 
-	* `prepublishOnly` - Runs the `build`
-		* `prebuild`  - Delete `"dist"` folder
-		* `build`     - Rollup build for production
-		* `postbuild` - Delete temporary declaration folder inside `"dist"`
+	* `prepublishOnly` - Runs the `checks` script

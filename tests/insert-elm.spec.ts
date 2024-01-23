@@ -1,32 +1,37 @@
-import {expect} from 'chai';
-import {JSDOM} from 'jsdom';
+import {describe, it, expect, beforeEach, afterEach} from 'vitest';
+import {JSDOM, DOMWindow} from 'jsdom';
 import {insert} from '../src/insert-elm';
-import {glb, setWinDoc} from './utils';
 
 export const insertElmSpec = () => {
 	let elm: HTMLElement;
 	let childA: HTMLElement;
 	let childB: HTMLElement;
 	let childC: HTMLElement;
+	let defaultGlobalDocument: Document;
+	let document: Document;
+	let window: DOMWindow;
 
-	beforeEach((done) => {
-		JSDOM.fromFile('./tests/html/insert-elm.html').then((dom) => {
-			setWinDoc(dom);
-			elm = document.createElement('div');
-			elm.id = 'put-me';
-			elm.textContent = 'put';
+	beforeEach(() => JSDOM.fromFile('./tests/html/insert-elm.html').then((dom) => {
+		/* eslint-disable prefer-destructuring */
+		window = dom.window;
+		document = dom.window.document;
+		/* eslint-enable prefer-destructuring */
 
-			childA = document.getElementById('child-A')!;
-			childB = document.getElementById('child-B')!;
-			childC = document.getElementById('child-C')!;
-			done();
-		});
-	});
+		defaultGlobalDocument = globalThis.document;
+		globalThis.document = document;
+
+		elm = document.createElement('div');
+		elm.id = 'put-me';
+		elm.textContent = 'put';
+
+		childA = document.getElementById('child-A')!;
+		childB = document.getElementById('child-B')!;
+		childC = document.getElementById('child-C')!;
+	}));
 
 	afterEach(() => {
-		glb.window.close();
-		glb.window = undefined;
-		glb.document = undefined;
+		window.close();
+		globalThis.document = defaultGlobalDocument;
 	});
 
 	it('returns a an object with `.before()` and `.after()` methods', () => {
@@ -77,7 +82,7 @@ export const insertElmSpec = () => {
 		});
 
 		it('.after(elm) - after last child (no nextSibling)', () => {
-			expect(childC.nextSibling).to.be.a('null');
+			expect(childC.nextSibling).to.be.null;
 			insert(elm).after(childC);
 			expect(childC.nextSibling).to.deep.equal(elm);
 		});

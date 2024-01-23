@@ -1,21 +1,7 @@
-import * as jsdom from 'jsdom';
-import {expect} from 'chai';
+import {it, expect} from 'vitest';
 import {createElm} from '../src/create-elm';
-import {glb, setWinDoc} from './utils';
 
 export const createElmSpec = () => {
-	before(() => {
-		const dom = new jsdom.JSDOM('');
-
-		setWinDoc(dom);
-	});
-
-	after(() => {
-		glb.window.close();
-		glb.window = undefined;
-		glb.document = undefined;
-	});
-
 	it('creates HTML elements', () => {
 		expect(createElm('a').nodeName).to.equal('A');
 		expect(createElm('p').nodeName).to.equal('P');
