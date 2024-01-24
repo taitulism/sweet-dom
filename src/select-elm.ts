@@ -5,24 +5,24 @@ import type {SelectorContext} from './types';
  * `getElementsByClassName` & `getElementsByTagName` return a live HTMLCollection.
 */
 
-export const $ = (
+export const $ = <T extends HTMLElement>(
 	qryStr: string,
 	ctx: SelectorContext = document,
-) => ctx.querySelector(qryStr);
+) => ctx.querySelector<T>(qryStr);
 
-export const $$ = (
+export const $$ = <T extends HTMLElement>(
 	qryStr: string,
 	ctx: SelectorContext = document,
-) => ctx.querySelectorAll(qryStr);
+) => ctx.querySelectorAll<T>(qryStr);
 
-export const $id = (id: string) => document.getElementById(id);
+export const $id = <T extends HTMLElement>(id: string) => document.getElementById(id) as T | null;
 
-export const $class = (
+export const $class = <T extends HTMLElement>(
 	classNames: string,
 	ctx: SelectorContext = document,
-) => Array.from(ctx.getElementsByClassName(classNames));
+) => ctx.getElementsByClassName<T>(classNames);
 
-export const $tag = (
-	tagName: string,
+export const $tag = <T extends keyof HTMLElementTagNameMap>(
+	tagName: T,
 	ctx: SelectorContext = document,
-) => Array.from(ctx.getElementsByTagName(tagName));
+) => ctx.getElementsByTagName<typeof tagName>(tagName);
