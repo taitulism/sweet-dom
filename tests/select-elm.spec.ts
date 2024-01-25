@@ -1,13 +1,14 @@
 import {describe, it, expect, beforeAll, afterAll} from 'vitest';
 import {JSDOM, DOMWindow} from 'jsdom';
 import {$, $$, $id, $class, $tag} from '../src/select-elm';
+import {jsdomOpts} from './common';
 
 export const selectElmSpec = () => {
 	let defaultGlobalDocument: Document;
 	let window: DOMWindow;
 	let document: Document;
 
-	beforeAll(() => JSDOM.fromFile('./tests/html/select-elm.html').then((dom) => {
+	beforeAll(() => JSDOM.fromFile('./tests/html/select-elm.html', jsdomOpts).then((dom) => {
 		/* eslint-disable prefer-destructuring */
 		window = dom.window;
 		document = dom.window.document;
@@ -38,10 +39,10 @@ export const selectElmSpec = () => {
 	});
 
 	describe('$$', () => {
-		it('returns a NodeList', () => {
+		it('returns an array', () => {
 			const elms = $$('*[class=box]');
 
-			expect(elms).to.be.an('NodeList');
+			expect(elms).to.be.an('array');
 		});
 
 		it('selects using native `querySelectorAll`', () => {

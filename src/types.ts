@@ -1,5 +1,5 @@
 /*
-Add generics to `getElementsByClassName` & `getElementsByTagName`
+Add generics to `getElementsByClassName`
 Default is `HTMLElement` instead of `Element`.
 
 This probably won't work for SVG elements and maybe other tags.

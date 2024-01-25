@@ -1,5 +1,5 @@
 import {createElm, bindEvent} from '../src';
-import {startBenchmark} from './benchmark';
+// import {startBenchmark} from './benchmark';
 
 const link = createElm('a#link', 'Click');
 

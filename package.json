@@ -14,7 +14,7 @@
    "repository": "github:taitulism/sweet-dom",
    "scripts": {
       "dev": "npm run test:watch",
-      "play": "rollup --config rollup.dev.config.js --watch",
+      "play": "rollup --config rollup.playground.config.js --bundleConfigAsCjs --watch",
       "prebuild": "rm -rf ./dist",
       "build": "rollup --config rollup.prod.config.js --bundleConfigAsCjs",
       "postbuild": "rm -rf ./dist/esm/temp-dts",
