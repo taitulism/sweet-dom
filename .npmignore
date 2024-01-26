@@ -3,3 +3,4 @@ playground
 dev-bundles
 .vscode
 coverage
+*.tgz
