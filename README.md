@@ -65,7 +65,6 @@ import {createElm, bindEvent} from 'sweet-dom';
 * **`$tag`** - A shortcut for `document.getElementsByTagName()`
 
 
-<!-- TODO: NOT ARRAY -->
 > The methods that return multiple elements, `$$`, `$class`, `$tag` - returns an array of elements instead of live-collections or node-lists.
 
 > All methods except `$id` also accepts a second argument: the context element to query (the default is `document`).
@@ -74,6 +73,12 @@ import {createElm, bindEvent} from 'sweet-dom';
 ```js
 const elm = $('#my-id');
 const elms = $$('.my-classname');
+const elm = $id('my-id');
+const elms = $class('my-classname');
+const elms = $tag('div');
+
+// within context
+const elms = $tag('div', containerElm);
 ```
 
 &nbsp;
