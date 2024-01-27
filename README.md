@@ -21,6 +21,9 @@ Could also be handy as a secondary pocket tool alongside your main components li
 * [Element Selection](#element-selection)
 	* `$()`
 	* `$$()`
+	* `$id()`
+	* `$class()`
+	* `$tag()`
 * [Element Creation](#element-creation)
 	* [`createElm()`](#createelmselector-content)
 	* [`createFrag()`](#createfragcontents)
