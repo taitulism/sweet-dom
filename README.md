@@ -347,12 +347,12 @@ Check Stuff
 
 Publish a new version
 ---------------------
-1.
-	> **`version` script Note:**  
-	> If something from `dist` folder is git tracked - add `" && git add dist"` to end of the script 
-	
-	&nbsp;
+> **`version` script Note:**  
+> If something from `dist` folder is git tracked - add `" && git add dist"` to end of the script 
 
+&nbsp;
+
+1.
 	```sh
 	$ npm version major|minor|patch
 	```  

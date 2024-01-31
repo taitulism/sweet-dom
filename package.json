@@ -7,11 +7,19 @@
    "module": "./dist/esm/sweet-dom.esm.js",
    "types": "./dist/esm/sweet-dom.esm.d.ts",
    "files": [
-      "dist/esm"
-   ],
-   "author": "Taitu Lizenbaum <taitu.dev@gmail.com>",
+		"dist",
+		"src"
+	],
+   "author": {
+		"name": "Itai Tenenbaum",
+		"email": "taitu.dev@gmail.com",
+		"url": "https://github.com/taitulism"
+	},
    "homepage": "https://github.com/taitulism/sweet-dom#readme",
-   "repository": "github:taitulism/sweet-dom",
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/taitulism/sweet-dom.git"
+   },
    "scripts": {
       "dev": "npm run test:watch",
       "play": "rollup --config rollup.playground.config.js --bundleConfigAsCjs --watch",
