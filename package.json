@@ -1,7 +1,7 @@
 {
    "name": "sweet-dom",
    "description": "A DOM library for developers who don't want a DOM library.",
-   "version": "0.0.7",
+   "version": "0.0.8",
    "license": "MIT",
    "main": "./src/index.ts",
    "module": "./dist/esm/sweet-dom.esm.js",
