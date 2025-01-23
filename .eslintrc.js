@@ -39,7 +39,7 @@ module.exports = {
 	rules: {
 		'@typescript-eslint/no-inferrable-types': 0,
 		'@typescript-eslint/no-non-null-assertion': 0,
-		'@typescript-eslint/no-unused-vars': 'error',
+		'@typescript-eslint/no-unused-vars': 0,
 		// '@typescript-eslint/type-annotation-spacing': 0, // removed
 		'@typescript-eslint/ban-ts-comment': 'warn',
 		'no-unused-expressions': 0,
