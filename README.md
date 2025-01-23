@@ -1,4 +1,4 @@
-![Build Status](https://github.com/taitulism/sweet-dom/actions/workflows/node-ci.yml/badge.svg)
+![Build Status](https://github.com/taitulism/sweet-dom/actions/workflows/ci.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
