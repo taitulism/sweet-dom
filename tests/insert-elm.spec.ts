@@ -82,7 +82,7 @@ export const insertElmSpec = () => {
 		});
 
 		it('.after(elm) - after last child (no nextSibling)', () => {
-			expect(childC.nextSibling).to.be.null;
+			expect(childC.nextSibling).toBeNull();
 			insert(elm).after(childC);
 			expect(childC.nextSibling).to.deep.equal(elm);
 		});

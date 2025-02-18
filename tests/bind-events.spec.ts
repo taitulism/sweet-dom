@@ -27,14 +27,14 @@ export const bindEventSpec = () => {
 		let clicked = false;
 
 		const unbind = bindEvent(button!, 'click', (ev) => {
-			expect(ev).to.be.ok;
+			expect(ev).toBeTruthy();
 			expect(ev.target).to.be.instanceOf(window.HTMLButtonElement);
 			clicked = true;
 			unbind();
 		});
 
 		button!.click();
-		expect(clicked).to.be.true;
+		expect(clicked).toBe(true);
 	});
 
 	it('returns a remove listener function', () => {

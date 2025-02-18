@@ -19,15 +19,15 @@ export const createElmSpec = () => {
 		const elm = createElm('h1.first-class');
 
 		expect(elm.nodeName).to.equal('H1');
-		expect(elm.classList.contains('first-class')).to.be.true;
+		expect(elm.classList.contains('first-class')).toBe(true);
 	});
 
 	it('creates an element with multiple classnames', () => {
 		const elm = createElm('p.first-class.second-class');
 
 		expect(elm.nodeName).to.equal('P');
-		expect(elm.classList.contains('first-class')).to.be.true;
-		expect(elm.classList.contains('second-class')).to.be.true;
+		expect(elm.classList.contains('first-class')).toBe(true);
+		expect(elm.classList.contains('second-class')).toBe(true);
 	});
 
 	it('creates an element with an id and classnames', () => {
@@ -35,8 +35,8 @@ export const createElmSpec = () => {
 
 		expect(elm.nodeName).to.equal('A');
 		expect(elm.id).to.equal('the-link');
-		expect(elm.classList.contains('first-class')).to.be.true;
-		expect(elm.classList.contains('second-class')).to.be.true;
+		expect(elm.classList.contains('first-class')).toBe(true);
+		expect(elm.classList.contains('second-class')).toBe(true);
 	});
 
 	it('creates a `div` by default', () => {
@@ -48,10 +48,10 @@ export const createElmSpec = () => {
 		expect(elm2.nodeName).to.equal('DIV');
 		expect(elm3.nodeName).to.equal('DIV');
 		expect(elm1.id).to.equal('the-id');
-		expect(elm2.classList.contains('some')).to.be.true;
-		expect(elm2.classList.contains('classes')).to.be.true;
+		expect(elm2.classList.contains('some')).toBe(true);
+		expect(elm2.classList.contains('classes')).toBe(true);
 		expect(elm3.id).to.equal('the-id');
-		expect(elm3.classList.contains('the-class')).to.be.true;
+		expect(elm3.classList.contains('the-class')).toBe(true);
 	});
 
 	it('creates an element with text', () => {
