@@ -37,6 +37,9 @@
       "postversion": "git push && git push --tags",
       "prepublishOnly": "npm run checks"
    },
+	"engines": {
+		"node": ">=20.0.0"
+	},
    "devDependencies": {
       "@eslint/js": "9.37.0",
       "@rollup/plugin-terser": "0.4.4",
