@@ -5,6 +5,7 @@ Default is `HTMLElement` instead of `Element`.
 This probably won't work for SVG elements and maybe other tags.
 The issue is that those methods are also used in XML
 */
+export {};
 declare global {
 	interface Document {
 		getElementsByClassName<T extends HTMLElement>(classNames: string): HTMLCollectionOf<T>;
